@@ -81,12 +81,16 @@ namespace TaskManagementSystemMITT.Migrations
                 {
                     Id = 1,
                     Name = "TaskManagementSystemtMITT",
+                    Description = "Task management system with developers and project managers used to manage simple projects.",
+                    DueDate = new DateTime(2020,11,13),
                     UserId = user1.Id
                 },
                 new Project
                 {
                     Id = 2,
                     Name = "TrelloManagementSystem",
+                    Description = "Online task management system with numerous templates",
+                    DueDate = new DateTime(2020,11,04),
                     UserId = user1.Id
                 }
             };

@@ -50,7 +50,7 @@ namespace TaskManagementSystemMITT.Models
             return db.Projects.Find(id).ProjectTasks.ToList();
         }
 
-        public static List<Project> AllProjectsByUser(int id)
+        public static List<Project> AllProjectsByUser(string id)
         {
             return db.Users.Find(id).Projects.ToList();
         }

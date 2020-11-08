@@ -186,6 +186,10 @@
     <Compile Include="Migrations\202011060441500_testingMethods.Designer.cs">
       <DependentUpon>202011060441500_testingMethods.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011080638468_AddedDueDateAndDescriptionToProject.cs" />
+    <Compile Include="Migrations\202011080638468_AddedDueDateAndDescriptionToProject.Designer.cs">
+      <DependentUpon>202011080638468_AddedDueDateAndDescriptionToProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -287,6 +291,7 @@
     <Content Include="Views\Projects\Details.cshtml" />
     <Content Include="Views\Projects\Edit.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Manage\GetAllTasksForProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -314,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011060441500_testingMethods.resx">
       <DependentUpon>202011060441500_testingMethods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011080638468_AddedDueDateAndDescriptionToProject.resx">
+      <DependentUpon>202011080638468_AddedDueDateAndDescriptionToProject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

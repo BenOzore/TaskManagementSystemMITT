@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -74,13 +75,15 @@ namespace TaskManagementSystemMITT.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
             };
 
+            ViewBag.User = db.Users.Find(userId);
+
             if (User.IsInRole("Manager"))
             { 
-                model.Projects = db.Users.Find(userId).Projects.ToList();
+                model.Projects = ProjectHelper.AllProjectsByUser(userId);
             }
             if (User.IsInRole("Developer"))
             {
-                model.Tasks = db.Users.Find(userId).Tasks.ToList();
+                model.Tasks = TaskHelper.GetAllTaskByUser(userId);
             }
 
             return View(model);
@@ -344,6 +347,13 @@ namespace TaskManagementSystemMITT.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult GetAllTasksForProject(int Id)
+        {
+            ViewBag.Project = db.Projects.Find(Id);
+
+            var result = ProjectHelper.AllTasksByProject(Id);
+            return View(result);
+        }
 #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

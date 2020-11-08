@@ -14,11 +14,14 @@ namespace TaskManagementSystemMITT.Models
         }
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         public virtual ICollection<ProjectTask> ProjectTasks { get; set; }
         
         public virtual ApplicationUser User { get; set; }
         
         public string UserId { get; set; }
 
+        public DateTime DueDate { get; set; }
+        
     }
 }
