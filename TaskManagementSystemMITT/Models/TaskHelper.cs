@@ -20,7 +20,7 @@ namespace TaskManagementSystemMITT.Models
             {
                 return false;
             }
-            db.Tasks.Add(new ProjectTask() { Name = task.Name, UserId = task.UserId });
+            db.Tasks.Add(task);
             db.SaveChanges();
             return true;
         }
@@ -43,6 +43,15 @@ namespace TaskManagementSystemMITT.Models
             if (task != null)
             {
                 task.Name = pTask.Name;
+                task.ProjectId = pTask.ProjectId;
+                task.Description = pTask.Description;
+                task.StartDateTime = pTask.StartDateTime;
+                task.EndDateTime = pTask.EndDateTime;
+                task.IsCompleted = pTask.IsCompleted;
+                task.UserId = pTask.UserId;
+                task.PercentCompleted = pTask.PercentCompleted;
+                task.Comment = pTask.Comment;
+                task.Priority = pTask.Priority;
                 db.Entry(task).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return true;
