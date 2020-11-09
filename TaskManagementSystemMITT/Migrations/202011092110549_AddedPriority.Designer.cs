@@ -7,13 +7,13 @@ namespace TaskManagementSystemMITT.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class testingMethods : IMigrationMetadata
+    public sealed partial class AddedPriority : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(testingMethods));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedPriority));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011060441500_testingMethods"; }
+            get { return "202011092110549_AddedPriority"; }
         }
         
         string IMigrationMetadata.Source
