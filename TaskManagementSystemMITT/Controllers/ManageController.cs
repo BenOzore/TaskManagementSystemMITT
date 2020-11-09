@@ -354,7 +354,16 @@ namespace TaskManagementSystemMITT.Controllers
             var result = ProjectHelper.AllTasksByProject(Id);
             return View(result);
         }
-#region Helpers
+
+        public ActionResult HideCompletedTasks(int Id)
+        {
+            ViewBag.Project = db.Projects.Find(Id);
+
+            var tasks = ProjectHelper.AllTasksByProject(Id);
+            var result = tasks.Where(t => t.IsCompleted == false).ToList();
+            return View("GetAllTasksForProject", result);
+        }
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
