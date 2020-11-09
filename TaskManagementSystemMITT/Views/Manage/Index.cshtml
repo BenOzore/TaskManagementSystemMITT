@@ -63,10 +63,9 @@
                         <tr>
                             <td>
                                 @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "UpdateProgress", "TaskHelper", new { Id = task.Id }, null) :
-@Html.ActionLink("Move to Completed", "MarkCompleted", "TaskHelper", new { Id = task.Id }, null))
+                                @Html.ActionLink("Move to Completed", "MarkCompleted", "TaskHelper", new { Id = task.Id }, null))
                             </td>
                         </tr>
-
                     </table>
                     <br />
                 }
@@ -74,7 +73,6 @@
         </div>
         <div class="floatright">
             <h5>Completed</h5>
-
             @foreach (var task in Model.Tasks)
             {
                 if (task.IsCompleted)
@@ -90,13 +88,11 @@
                         <tr>
                             <td>
                                 @(task.Comment == null ? @Html.ActionLink("Add a Comment", "AddComment", "TaskHelper", new { Id = task.Id }, null) :
-        @Html.ActionLink("View Comments", "ViewComment", "TaskHelper", new { Id = task.Id }, null))
+                                @Html.ActionLink("View Comments", "ViewComment", "TaskHelper", new { Id = task.Id }, null))
                             </td>
                         </tr>
                     </table>
                     <br />
-
-
                 }
             }
         </div>
@@ -106,9 +102,8 @@
 else
 {
     <h3> Project Manager Dashboard for @ViewBag.User.UserName</h3>
-    <div class="floatleft">@Html.ActionLink("Create a New Project", "Create", "Projects")</div><div class="floatright" >@Html.ActionLink("Create a New Task", "Create", "Task")
-</div>
-
+    <div class="floatleft">@Html.ActionLink("Create a New Project", "Create", "Projects")</div>
+    <div class="floatright" >@Html.ActionLink("Create a New Task", "Create", "Task")</div>
 
     foreach (var project in Model.Projects)
     {
