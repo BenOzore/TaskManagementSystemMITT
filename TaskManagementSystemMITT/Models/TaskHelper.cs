@@ -20,6 +20,7 @@ namespace TaskManagementSystemMITT.Models
             {
                 return false;
             }
+            task.IsCompleted = false;
             db.Tasks.Add(task);
             db.SaveChanges();
             return true;

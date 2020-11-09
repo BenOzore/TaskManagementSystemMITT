@@ -10,13 +10,13 @@ namespace TaskManagementSystemMITT.Models
     {
         static ApplicationDbContext db = new ApplicationDbContext();
 
-        public static bool CreateProject(string name, string projectManagerId)
+        public static bool CreateProject(string name, string projectManagerId, DateTime dueDate)
         {
             if (db.Projects.Any(p => p.Name == name))
             {
                 return false;
             }
-            db.Projects.Add(new Project() { Name = name, UserId = projectManagerId });
+            db.Projects.Add(new Project() { Name = name, UserId = projectManagerId, DueDate = dueDate});
             db.SaveChanges();
             return true;
         }
