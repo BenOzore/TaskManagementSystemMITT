@@ -78,12 +78,13 @@ namespace TaskManagementSystemMITT.Controllers
             ViewBag.User = db.Users.Find(userId);
 
             if (User.IsInRole("Manager"))
-            { 
-                model.Projects = ProjectHelper.AllProjectsByUser(userId);
+            {
+                model.Projects = ProjectHelper.AllProjectsByUser(userId).OrderByDescending(p => p.Priority).ToList();
+
             }
             if (User.IsInRole("Developer"))
             {
-                model.Tasks = TaskHelper.GetAllTaskByUser(userId);
+                model.Tasks = TaskHelper.GetAllTaskByUser(userId).OrderByDescending(t => t.Priority).ToList();
             }
 
             return View(model);
