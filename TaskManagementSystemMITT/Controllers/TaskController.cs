@@ -58,7 +58,7 @@ namespace TaskManagementSystemMITT.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDateTime,EndDateTime,ProjectId,UserId,IsCompleted,PercentCompleted,Comment,Priority")] ProjectTask projectTask)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDateTime,EndDateTime,ProjectId,UserId,PercentCompleted,Priority")] ProjectTask projectTask)
         {
             if (ModelState.IsValid)
             {

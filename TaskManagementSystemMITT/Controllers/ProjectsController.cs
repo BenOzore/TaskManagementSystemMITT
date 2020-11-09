@@ -51,9 +51,9 @@ namespace TaskManagementSystemMITT.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles = "Manager")]
         [HttpPost]
-        public ActionResult Create(string name)
+        public ActionResult Create(string name, DateTime dueDate)
         {
-            ProjectHelper.CreateProject(name, User.Identity.GetUserId());
+            ProjectHelper.CreateProject(name, User.Identity.GetUserId(), dueDate);
             return RedirectToAction("Index", "Manage");
         }
 
