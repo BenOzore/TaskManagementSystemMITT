@@ -66,6 +66,7 @@
                     </tr>
                     <tr>
                         <td>
+                            Priority: @task.Priority<br />
                             @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "UpdateProgress", "TaskHelper", new { Id = task.Id }, null) :
 @Html.ActionLink("Move to Completed", "MarkCompleted", "TaskHelper", new { Id = task.Id }, null))
                         </td>
@@ -93,6 +94,7 @@
                     </tr>
                     <tr>
                         <td>
+                            Priority: @task.Priority<br />
                             @(task.Comment == null ? @Html.ActionLink("Add a Comment", "AddComment", "TaskHelper", new { Id = task.Id }, null) :
         @Html.ActionLink("View Comments", "ViewComment", "TaskHelper", new { Id = task.Id }, null))
                         </td>
