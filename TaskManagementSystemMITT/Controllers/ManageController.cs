@@ -66,6 +66,7 @@ namespace TaskManagementSystemMITT.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -79,11 +80,12 @@ namespace TaskManagementSystemMITT.Controllers
 
             if (User.IsInRole("Manager"))
             { 
-                model.Projects = ProjectHelper.AllProjectsByUser(userId);
+                model.Projects = ProjectHelper.AllProjectsByUser(userId).OrderByDescending(p => p.Priority).ToList();
+                
             }
             if (User.IsInRole("Developer"))
             {
-                model.Tasks = TaskHelper.GetAllTaskByUser(userId);
+                model.Tasks = TaskHelper.GetAllTaskByUser(userId).OrderByDescending(t => t.Priority).ToList();
             }
 
             return View(model);
@@ -354,6 +356,8 @@ namespace TaskManagementSystemMITT.Controllers
             var result = ProjectHelper.AllTasksByProject(Id);
             return View(result);
         }
+
+
 #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
