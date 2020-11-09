@@ -168,7 +168,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DevDashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,10 +188,6 @@
     <Compile Include="Migrations\202011060049319_AddedPercentCompletedPropToTasks.cs" />
     <Compile Include="Migrations\202011060049319_AddedPercentCompletedPropToTasks.Designer.cs">
       <DependentUpon>202011060049319_AddedPercentCompletedPropToTasks.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011072258538_configuredview.cs" />
-    <Compile Include="Migrations\202011072258538_configuredview.Designer.cs">
-      <DependentUpon>202011072258538_configuredview.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -290,11 +285,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\DevDashboard\Create.cshtml" />
-    <Content Include="Views\DevDashboard\Delete.cshtml" />
-    <Content Include="Views\DevDashboard\Details.cshtml" />
-    <Content Include="Views\DevDashboard\Edit.cshtml" />
-    <Content Include="Views\DevDashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -325,9 +315,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011060049319_AddedPercentCompletedPropToTasks.resx">
       <DependentUpon>202011060049319_AddedPercentCompletedPropToTasks.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011072258538_configuredview.resx">
-      <DependentUpon>202011072258538_configuredview.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
