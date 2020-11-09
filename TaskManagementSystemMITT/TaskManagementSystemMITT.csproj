@@ -203,6 +203,10 @@
     <Compile Include="Migrations\202011091951306_UpdateProjectNameColumn.Designer.cs">
       <DependentUpon>202011091951306_UpdateProjectNameColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011092032045_editseedmethod.cs" />
+    <Compile Include="Migrations\202011092032045_editseedmethod.Designer.cs">
+      <DependentUpon>202011092032045_editseedmethod.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -349,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011091951306_UpdateProjectNameColumn.resx">
       <DependentUpon>202011091951306_UpdateProjectNameColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011092032045_editseedmethod.resx">
+      <DependentUpon>202011092032045_editseedmethod.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
