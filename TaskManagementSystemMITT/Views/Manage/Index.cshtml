@@ -112,7 +112,7 @@ else
             </tr>
             <tr>
                 <td>
-                    Tasks remaining: @project.ProjectTasks.Count() | &nbsp; @Html.ActionLink("View Tasks", "GetAllTasksForProject", "Manage", new { Id = project.Id, }, null)
+                    Tasks remaining: @project.ProjectTasks.Count() | &nbsp; @Html.ActionLink("View Tasks", "Index", "Task", new { Id = project.Id, }, null)
                 </td>
             </tr>
 

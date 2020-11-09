@@ -56,9 +56,14 @@ namespace TaskManagementSystemMITT.Models
             return result;
         }
 
-        public static ICollection<string> AllUsersInRole(string roleName)
+        public static ICollection<ApplicationUser> AllUsersInRole(string roleName)
         {
-            var result = Roles.GetUsersInRole(roleName);
+            var role = roleManager.Roles.Where(i => i.Name == roleName).FirstOrDefault();
+            if (role==null)
+            {
+                return null;
+            }
+;            var result = userManager.Users.Where(i => i.Roles.Any(j => j.RoleId == role.Id)).ToList();
 
             return result;
         }
