@@ -170,8 +170,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProjectsController.cs" />
-    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,13 +181,13 @@
     <Compile Include="Migrations\202011051724485_FinishBaseicClasses.Designer.cs">
       <DependentUpon>202011051724485_FinishBaseicClasses.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011060441500_testingMethods.cs" />
-    <Compile Include="Migrations\202011060441500_testingMethods.Designer.cs">
-      <DependentUpon>202011060441500_testingMethods.cs</DependentUpon>
+    <Compile Include="Migrations\202011060031115_addedCommentPropToTasks.cs" />
+    <Compile Include="Migrations\202011060031115_addedCommentPropToTasks.Designer.cs">
+      <DependentUpon>202011060031115_addedCommentPropToTasks.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011080638468_AddedDueDateAndDescriptionToProject.cs" />
-    <Compile Include="Migrations\202011080638468_AddedDueDateAndDescriptionToProject.Designer.cs">
-      <DependentUpon>202011080638468_AddedDueDateAndDescriptionToProject.cs</DependentUpon>
+    <Compile Include="Migrations\202011060049319_AddedPercentCompletedPropToTasks.cs" />
+    <Compile Include="Migrations\202011060049319_AddedPercentCompletedPropToTasks.Designer.cs">
+      <DependentUpon>202011060049319_AddedPercentCompletedPropToTasks.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -287,17 +285,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Projects\Create.cshtml" />
-    <Content Include="Views\Projects\Delete.cshtml" />
-    <Content Include="Views\Projects\Details.cshtml" />
-    <Content Include="Views\Projects\Edit.cshtml" />
-    <Content Include="Views\Projects\Index.cshtml" />
-    <Content Include="Views\Manage\GetAllTasksForProject.cshtml" />
-    <Content Include="Views\Task\Create.cshtml" />
-    <Content Include="Views\Task\Delete.cshtml" />
-    <Content Include="Views\Task\Details.cshtml" />
-    <Content Include="Views\Task\Edit.cshtml" />
-    <Content Include="Views\Task\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -323,11 +310,11 @@
     <EmbeddedResource Include="Migrations\202011051724485_FinishBaseicClasses.resx">
       <DependentUpon>202011051724485_FinishBaseicClasses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011060441500_testingMethods.resx">
-      <DependentUpon>202011060441500_testingMethods.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011060031115_addedCommentPropToTasks.resx">
+      <DependentUpon>202011060031115_addedCommentPropToTasks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011080638468_AddedDueDateAndDescriptionToProject.resx">
-      <DependentUpon>202011080638468_AddedDueDateAndDescriptionToProject.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011060049319_AddedPercentCompletedPropToTasks.resx">
+      <DependentUpon>202011060049319_AddedPercentCompletedPropToTasks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

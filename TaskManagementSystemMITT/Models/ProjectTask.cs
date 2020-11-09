@@ -10,7 +10,6 @@ namespace TaskManagementSystemMITT.Models
 {
     public class ProjectTask
     {
-        
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
@@ -20,6 +19,8 @@ namespace TaskManagementSystemMITT.Models
         public DateTime StartDateTime { get; set; }
         [Required]
         public DateTime EndDateTime { get; set; }
+        public int PercentCompleted { get; set; }
+        public string Comment { get; set; }
         public int ProjectId { get; set; }
         public virtual Project Project { get; set; }
         
