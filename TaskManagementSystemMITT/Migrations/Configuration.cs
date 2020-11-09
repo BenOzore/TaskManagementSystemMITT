@@ -83,7 +83,8 @@ namespace TaskManagementSystemMITT.Migrations
                     Name = "TaskManagementSystemtMITT",
                     Description = "Task management system with developers and project managers used to manage simple projects.",
                     DueDate = new DateTime(2020,11,13),
-                    UserId = user1.Id
+                    UserId = user1.Id,
+                    Priority = Priority.Low
                 },
                 new Project
                 {
@@ -91,7 +92,8 @@ namespace TaskManagementSystemMITT.Migrations
                     Name = "TrelloManagementSystem",
                     Description = "Online task management system with numerous templates",
                     DueDate = new DateTime(2020,11,04),
-                    UserId = user1.Id
+                    UserId = user1.Id,
+                    Priority = Priority.High
                 }
             };
             context.Projects.AddOrUpdate(t => t.Name, projects);
@@ -107,7 +109,7 @@ namespace TaskManagementSystemMITT.Migrations
                     StartDateTime = DateTime.Parse("06/11/2020", new System.Globalization.CultureInfo("pt-BR")),
                     EndDateTime = DateTime.Parse("18/11/2020", new System.Globalization.CultureInfo("pt-BR")),
                     IsCompleted = false,
-                    Priority = Priority.High,
+                    Priority = Priority.Low,
                     UserId = user2.Id,
                     ProjectId = 1
                 },

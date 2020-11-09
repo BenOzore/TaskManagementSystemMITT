@@ -35,8 +35,8 @@ namespace TaskManagementSystemMITT.Models
 
     public enum Priority
     {
-        High,
-        Medium,
-        Low
+        High = 3,
+        Medium = 2,
+        Low = 1
     }
 }
