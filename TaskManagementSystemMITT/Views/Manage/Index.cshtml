@@ -4,14 +4,25 @@
 }
 
 <style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
+    table {
+        border-collapse: separate;
+        border: solid black 2px;
+        border-radius: 6px;
     }
 
     th, td {
-        padding: 5px;
+        padding: 8px;
         text-align: left;
+        border-left: solid black 1px;
+        border-top: solid black 1px;
+    }
+
+    th {
+        border-top: none;
+    }
+
+    td:first-child, th:first-child {
+        border-left: none;
     }
 
     .floatleft {
@@ -95,16 +106,14 @@
 else
 {
     <h3> Project Manager Dashboard for @ViewBag.User.UserName</h3>
-    @Html.ActionLink("Create a New Project", "Create", "Projects")<br />
-    @Html.ActionLink("Create a New Task", "Create", "Task")
-
-
+    @Html.ActionLink("Create a New Project", "Create", "Projects")  
+    @Html.ActionLink("Create a New Task", "Create", "Task")<br />
 
     foreach (var project in Model.Projects)
     {
-        <table style="width: 55%;border:groove; border-width: thin; ">
+        <table style="width: 55%;border:groove; ">
             <tr>
-                <th>Project: @project.Name <span style="float:right">@Html.ActionLink("Delete Project", "Delete", "Projects", new { Id = project.Id, }, null)</span></th>
+                <th>Project: @project.Name <span style="float:right;">@Html.ActionLink("Delete Project", "Delete", "Projects", new { Id = project.Id, }, null)</span></th>
             </tr>
             <tr>
                 <td>@project.Description</td>
