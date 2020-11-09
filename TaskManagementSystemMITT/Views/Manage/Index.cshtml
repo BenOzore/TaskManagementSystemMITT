@@ -3,85 +3,130 @@
     ViewBag.Title = "Manage";
 }
 
-<h2>@ViewBag.Title.</h2>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
+    th, td {
+        padding: 5px;
+        text-align: left;
+    }
+
+    .floatleft {
+        width: 50%;
+        float: left;
+    }
+
+    .floatright {
+        width: 50%;
+        float: right;
+    }
+
+    .container {
+        overflow: hidden;
+    }
+</style>
+
+@if (Model.Projects == null)
+{
+    <h3>Developer Dashboard for @ViewBag.User.UserName</h3>
+
+    <h4>Tasks:</h4>
+
+    <div class="container">
+        <div class="floatleft">
+            <h5>Working</h5>
+            @foreach (var task in Model.Tasks)
             {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>External Logins:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>
-        @*
-            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
-             See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
-             Uncomment the following block after you have set up two-factor authentication
-        *@
-        @*  
-            <dt>Phone Number:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
+                if (!task.IsCompleted)
                 {
+                    <table style="width: 25%;border:groove; border-width: thin; ">
+                        <tr>
+                            <th>Task</th>
+                        </tr>
+                        <tr>
+                            <td>@task.Description</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "UpdateProgress", "TaskHelper", new { Id = task.Id }, null) :
+@Html.ActionLink("Move to Completed", "MarkCompleted", "TaskHelper", new { Id = task.Id }, null))
+                            </td>
+                        </tr>
+
+                    </table>
                     <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
-                    }
                 }
-                else
+            }
+        </div>
+        <div class="floatright">
+            <h5>Completed</h5>
+
+            @foreach (var task in Model.Tasks)
+            {
+                if (task.IsCompleted)
                 {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+        <table style="width: 25%;border:groove; border-width: thin; ">
+
+            <tr>
+                <th>Task</th>
+            </tr>
+            <tr>
+                <td>@task.Description</td>
+            </tr>
+            <tr>
+                <td>
+                    @(task.Comment == null ? @Html.ActionLink("Add a Comment", "AddComment", "TaskHelper", new { Id = task.Id }, null) :
+        @Html.ActionLink("View Comments", "ViewComment", "TaskHelper", new { Id = task.Id }, null))
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink("Delete Task", "Delete", "Tasks", new { Id = task.Id }, null) 
+                </td>
+            </tr>
+        </table>
+                    <br />
+
+
                 }
-            </dd>
-        *@
-        <dt>Two-Factor Authentication:</dt>
-        <dd>
-            <p>
-                There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Enabled
-                        <input type="submit" value="Disable" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Disabled
-                        <input type="submit" value="Enable" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
-        </dd>
-    </dl>
-</div>
+            }
+        </div>
+    </div>
+}
+
+else
+{
+    <h3> Project Manager Dashboard for @ViewBag.User.UserName</h3>
+    @Html.ActionLink("Create a New Project", "Create", "Projects") 
+    @Html.ActionLink("Create a New Task", "Create", "Task")
+
+
+
+    foreach (var project in Model.Projects)
+    {
+        <table style="width: 55%;border:groove; border-width: thin; ">
+            <tr>
+                <th>Project: @project.Name <span style="float:right">@Html.ActionLink("Delete Project", "Delete", "Projects", new { Id = project.Id, }, null)</span></th>
+            </tr>
+            <tr>
+                <td>@project.Description</td>
+            </tr>
+            <tr>
+                <td>Due Date: @project.DueDate.ToString()</td>
+            </tr>
+            <tr>
+                <td>
+                    Tasks remaining: @project.ProjectTasks.Count() | &nbsp; @Html.ActionLink("View Tasks", "GetAllTasksForProject", "Manage", new { Id = project.Id, }, null)
+                </td>
+            </tr>
+
+        </table>
+        <br />
+    }
+
+
+
+}
