@@ -6,17 +6,32 @@
 
 <h2>Viewing all tasks for project @ViewBag.Project.Name</h2>
 @Html.ActionLink("Back to Dashboard", "Index", "Manage")
+<br />
+@Html.ActionLink("Hide Completed ", "HideCompletedTasks", "Manage", new { Id = ViewBag.Project.Id }, null)
+<br />
+@Html.ActionLink("Show All", "GetAllTasksForProject", "Manage", new { Id = ViewBag.Project.Id }, null)
 
 <style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
+    table {
+        border-collapse: separate;
+        border: solid black 2px;
+        border-radius: 6px;
     }
 
     th, td {
-        padding: 5px;
+        padding: 8px;
         text-align: left;
+        border-left: solid black 1px;
+        border-top: solid black 1px;
     }
+
+    th {
+        border-top: none;
+    }
+
+        td:first-child, th:first-child {
+            border-left: none;
+        }
 
     .floatleft {
         width: 50%;
@@ -30,67 +45,66 @@
 
     .container {
         overflow: hidden;
-        
     }
 </style>
 
 
 
-    <div class="container">
-        <div class="floatleft">
-            <h5>Working</h5>
-            @foreach (var task in Model)
+<div class="container">
+    <div class="floatleft">
+        <h5>Working</h5>
+        @foreach (var task in Model)
+        {
+            if (!task.IsCompleted)
             {
-                if (!task.IsCompleted)
-                {
-                    <table style="width: 25%;border:groove; border-width: thin; ">
-                        <tr>
-                            <th>Task</th>
-                        </tr>
-                        <tr>
-                            <td>@task.Description</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "UpdateProgress", "TaskHelper", new { Id = task.Id }, null) :
+                <table style="width: 35%;border:groove; ">
+                    <tr>
+                        <th>Task</th>
+                    </tr>
+                    <tr>
+                        <td>@task.Description</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "UpdateProgress", "TaskHelper", new { Id = task.Id }, null) :
 @Html.ActionLink("Move to Completed", "MarkCompleted", "TaskHelper", new { Id = task.Id }, null))
-                            </td>
-                        </tr>
+                        </td>
+                    </tr>
 
-                    </table>
-                    <br />
-                }
+                </table>
+                <br />
             }
-        </div>
-        <div class="floatright">
-            <h5>Completed</h5>
-
-            @foreach (var task in Model)
-            {
-                if (task.IsCompleted)
-                {
-                    <table style="width: 25%;border:groove; border-width: thin; ">
-
-                        <tr>
-                            <th>Task</th>
-                        </tr>
-                        <tr>
-                            <td>@task.Description</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @(task.Comment == null ? @Html.ActionLink("Add a Comment", "AddComment", "TaskHelper", new { Id = task.Id }, null) :
-        @Html.ActionLink("View Comments", "ViewComment", "TaskHelper", new { Id = task.Id }, null))
-                            </td>
-                        </tr>
-                    </table>
-                    <br />
-
-
-                }
-            }
-        </div>
+        }
     </div>
+    <div class="floatright">
+        <h5>Completed</h5>
+
+        @foreach (var task in Model)
+        {
+            if (task.IsCompleted)
+            {
+                <table style="width: 35%;border:groove; ">
+
+                    <tr>
+                        <th>Task</th>
+                    </tr>
+                    <tr>
+                        <td>@task.Description</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @(task.Comment == null ? @Html.ActionLink("Add a Comment", "AddComment", "TaskHelper", new { Id = task.Id }, null) :
+        @Html.ActionLink("View Comments", "ViewComment", "TaskHelper", new { Id = task.Id }, null))
+                        </td>
+                    </tr>
+                </table>
+                <br />
+
+
+            }
+        }
+    </div>
+</div>
 
 
 
