@@ -9,18 +9,21 @@
 @using (Html.BeginForm()) 
 {
 
-    <div class="form-horizontal">
-        <hr />
-        <div class="form-group">
-            Project Name: <input name="name" type="text" value=""/>
-        </div>
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        Project Name: <input name="name" type="text" value="" />
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        Due date: <input name="dueDate" type="datetime" value="" />
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
+</div>
 }
 
 <div>
