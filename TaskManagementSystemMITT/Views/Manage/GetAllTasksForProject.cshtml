@@ -8,6 +8,8 @@
 @Html.ActionLink("Back to Dashboard", "Index", "Manage")
 <br />
 @Html.ActionLink("Hide Completed ", "HideCompletedTasks", "Manage", new { Id = ViewBag.Project.Id }, null)
+<br />
+@Html.ActionLink("Show All", "GetAllTasksForProject", "Manage", new { Id = ViewBag.Project.Id }, null)
 
 <style>
     table {

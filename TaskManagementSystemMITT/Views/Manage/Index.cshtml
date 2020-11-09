@@ -21,9 +21,9 @@
         border-top: none;
     }
 
-    td:first-child, th:first-child {
-        border-left: none;
-    }
+        td:first-child, th:first-child {
+            border-left: none;
+        }
 
     .floatleft {
         width: 50%;
@@ -43,6 +43,9 @@
 @if (Model.Projects == null)
 {
     <h3>Developer Dashboard for @ViewBag.User.UserName</h3>
+    @Html.ActionLink("Hide Completed ", "HideCompletedTasksForUser", "Manage", new { Id = ViewBag.User.Id }, null)
+    <br />
+    @Html.ActionLink("Show All", "Index", "Manage", new { Id = ViewBag.User.Id }, null)
 
     <h4>Tasks:</h4>
 
@@ -103,7 +106,7 @@ else
 {
     <h3> Project Manager Dashboard for @ViewBag.User.UserName</h3>
     <div class="floatleft">@Html.ActionLink("Create a New Project", "Create", "Projects")</div>
-    <div class="floatright" >@Html.ActionLink("Create a New Task", "Create", "Task")</div>
+    <div class="floatright">@Html.ActionLink("Create a New Task", "Create", "Task")</div>
 
     foreach (var project in Model.Projects)
     {
