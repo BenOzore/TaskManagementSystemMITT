@@ -8,15 +8,26 @@
 @Html.ActionLink("Back to Dashboard", "Index", "Manage")
 
 <style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
+    table {
+        border-collapse: separate;
+        border: solid black 2px;
+        border-radius: 6px;
     }
 
     th, td {
-        padding: 5px;
+        padding: 8px;
         text-align: left;
+        border-left: solid black 1px;
+        border-top: solid black 1px;
     }
+
+    th {
+        border-top: none;
+    }
+
+        td:first-child, th:first-child {
+            border-left: none;
+        }
 
     .floatleft {
         width: 50%;
@@ -24,13 +35,12 @@
     }
 
     .floatright {
-        width: 50%;
+        width: 40%;
         float: right;
     }
 
     .container {
         overflow: hidden;
-        
     }
 </style>
 
@@ -43,7 +53,7 @@
             {
                 if (!task.IsCompleted)
                 {
-                    <table style="width: 25%;border:groove; border-width: thin; ">
+                    <table style="width: 25%;border:groove; ">
                         <tr>
                             <th>Task</th>
                         </tr>
@@ -69,7 +79,7 @@
             {
                 if (task.IsCompleted)
                 {
-                    <table style="width: 25%;border:groove; border-width: thin; ">
+                    <table style="width: 25%;border:groove; ">
 
                         <tr>
                             <th>Task</th>
