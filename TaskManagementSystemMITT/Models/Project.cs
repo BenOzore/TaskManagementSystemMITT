@@ -22,6 +22,9 @@ namespace TaskManagementSystemMITT.Models
         public string UserId { get; set; }
 
         public DateTime DueDate { get; set; }
-        
+
+        public Priority Priority { get; set; }
     }
+
+    
 }
