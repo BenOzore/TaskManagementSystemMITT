@@ -199,13 +199,13 @@
     <Compile Include="Migrations\202011080638468_AddedDueDateAndDescriptionToProject.Designer.cs">
       <DependentUpon>202011080638468_AddedDueDateAndDescriptionToProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011091720007_addedValuesToPriorityProperty.cs" />
+    <Compile Include="Migrations\202011091720007_addedValuesToPriorityProperty.Designer.cs">
+      <DependentUpon>202011091720007_addedValuesToPriorityProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202011091951306_UpdateProjectNameColumn.cs" />
     <Compile Include="Migrations\202011091951306_UpdateProjectNameColumn.Designer.cs">
       <DependentUpon>202011091951306_UpdateProjectNameColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011092032045_editseedmethod.cs" />
-    <Compile Include="Migrations\202011092032045_editseedmethod.Designer.cs">
-      <DependentUpon>202011092032045_editseedmethod.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -351,11 +351,11 @@
     <EmbeddedResource Include="Migrations\202011080638468_AddedDueDateAndDescriptionToProject.resx">
       <DependentUpon>202011080638468_AddedDueDateAndDescriptionToProject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011091720007_addedValuesToPriorityProperty.resx">
+      <DependentUpon>202011091720007_addedValuesToPriorityProperty.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011091951306_UpdateProjectNameColumn.resx">
       <DependentUpon>202011091951306_UpdateProjectNameColumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011092032045_editseedmethod.resx">
-      <DependentUpon>202011092032045_editseedmethod.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
