@@ -28,8 +28,7 @@ namespace TaskManagementSystemMITT.Models
         
         public string UserId { get; set; }
         public bool IsCompleted { get; set; }
-        public int PercentCompleted { get; set; }
-        public string Comment { get; set; }
+
         public Priority Priority { get; set; }
         
     }
