@@ -76,10 +76,9 @@ namespace TaskManagementSystemMITT.Controllers
             };
 
             ViewBag.User = db.Users.Find(userId);
-
             if (User.IsInRole("Manager"))
             {
-                model.Projects = ProjectHelper.AllProjectsByUser(userId).OrderByDescending(p => p.Priority).ToList();
+                model.Projects = ProjectHelper.AllProjectsByUser(db, userId).OrderByDescending(p => p.Priority).ToList();
 
             }
             if (User.IsInRole("Developer"))
@@ -352,7 +351,7 @@ namespace TaskManagementSystemMITT.Controllers
         {
             ViewBag.Project = db.Projects.Find(Id);
 
-            var result = ProjectHelper.AllTasksByProject(Id);
+            var result = ProjectHelper.AllTasksByProject(db, Id);
             return View(result);
         }
 
@@ -360,7 +359,7 @@ namespace TaskManagementSystemMITT.Controllers
         {
             ViewBag.Project = db.Projects.Find(Id);
 
-            var tasks = ProjectHelper.AllTasksByProject(Id);
+            var tasks = ProjectHelper.AllTasksByProject(db, Id);
             var result = tasks.Where(t => t.IsCompleted == false).ToList();
             return View("GetAllTasksForProject", result);
         }
@@ -377,7 +376,7 @@ namespace TaskManagementSystemMITT.Controllers
 
             public ActionResult ShowAllTasksForProject(int Id)
         {
-            var result = ProjectHelper.AllTasksByProject(Id);
+            var result = ProjectHelper.AllTasksByProject(db, Id);
             return View("GetAllTasksForProject", result);
 
         }

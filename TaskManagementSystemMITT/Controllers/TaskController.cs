@@ -13,7 +13,7 @@ namespace TaskManagementSystemMITT.Controllers
 {
     public class TaskController : Controller
     {
-     //   private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Task
         public ActionResult Index(int? id)
@@ -23,7 +23,7 @@ namespace TaskManagementSystemMITT.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // var userId = User.Identity.GetUserId();
-            var projectTasks = ProjectHelper.AllTasksByProject((int)id);
+            var projectTasks = ProjectHelper.AllTasksByProject(db, (int)id);
             return View(projectTasks.ToList());
         }
 
@@ -47,8 +47,8 @@ namespace TaskManagementSystemMITT.Controllers
         {
             var users = UserRoleHelper.AllUsersInRole("Developer");
             var userId = users.Select(i => new SelectListItem() { Text = i.UserName, Value = i.Id.ToString() }).ToList();
-            ViewBag.ProjectId = ProjectHelper.AllProjectsByUser(User.Identity.GetUserId())
-                .Select(i=> new SelectListItem() {Text=i.Name,Value=i.Id.ToString() }).ToList();
+            ViewBag.ProjectId = ProjectHelper.AllProjectsByUser(db, User.Identity.GetUserId())
+                .Select(i => new SelectListItem() { Text = i.Name, Value = i.Id.ToString() }).ToList();
             ViewBag.UserId = userId;
             return View();
         }
@@ -66,7 +66,7 @@ namespace TaskManagementSystemMITT.Controllers
                 return Redirect("~/Manage/index");
             }
             var userId = User.Identity.GetUserId();
-            ViewBag.ProjectId = ProjectHelper.AllProjectsByUser(userId);
+            ViewBag.ProjectId = ProjectHelper.AllProjectsByUser(db, userId);
             ViewBag.UserId = userId;
             return View(projectTask);
         }
@@ -78,14 +78,14 @@ namespace TaskManagementSystemMITT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProjectTask projectTask =TaskHelper.GetTask((int)id);
+            ProjectTask projectTask = TaskHelper.GetTask((int)id);
             if (projectTask == null)
             {
                 return HttpNotFound();
             }
             var users = UserRoleHelper.AllUsersInRole("Developer");
             var userId = users.Select(i => new SelectListItem() { Text = i.UserName, Value = i.Id.ToString() }).ToList();
-            ViewBag.ProjectId = ProjectHelper.AllProjectsByUser(User.Identity.GetUserId())
+            ViewBag.ProjectId = ProjectHelper.AllProjectsByUser(db, User.Identity.GetUserId())
                 .Select(i => new SelectListItem() { Text = i.Name, Value = i.Id.ToString() }).ToList();
             ViewBag.UserId = userId;
             return View(projectTask);
@@ -105,7 +105,7 @@ namespace TaskManagementSystemMITT.Controllers
             }
             var users = UserRoleHelper.AllUsersInRole("Developer");
             var userId = users.Select(i => new SelectListItem() { Text = i.UserName, Value = i.Id.ToString() }).ToList();
-            ViewBag.ProjectId = ProjectHelper.AllProjectsByUser(User.Identity.GetUserId())
+            ViewBag.ProjectId = ProjectHelper.AllProjectsByUser(db, User.Identity.GetUserId())
                 .Select(i => new SelectListItem() { Text = i.Name, Value = i.Id.ToString() }).ToList();
             ViewBag.UserId = userId;
             return View(projectTask);

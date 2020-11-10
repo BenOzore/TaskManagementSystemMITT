@@ -1,7 +1,9 @@
 ﻿using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace TaskManagementSystemMITT.Models
@@ -16,7 +18,7 @@ namespace TaskManagementSystemMITT.Models
             {
                 return false;
             }
-            db.Projects.Add(new Project() { Name = name, UserId = projectManagerId, DueDate = dueDate});
+            db.Projects.Add(new Project() { Name = name, UserId = projectManagerId, DueDate = dueDate });
             db.SaveChanges();
             return true;
         }
@@ -26,7 +28,7 @@ namespace TaskManagementSystemMITT.Models
             if (db.Projects.Any(p => p.Id == id))
             {
                 var proj = db.Projects.Find(id);
-                proj.ProjectTasks.ForEach(t => db.Tasks.Remove(t));
+                db.Tasks.RemoveRange(proj.ProjectTasks);
                 db.Projects.Remove(proj);
                 db.SaveChanges();
                 return true;
@@ -45,14 +47,14 @@ namespace TaskManagementSystemMITT.Models
             return false;
         }
 
-        public static List<ProjectTask> AllTasksByProject(int id)
+        public static List<ProjectTask> AllTasksByProject(ApplicationDbContext database, int id)
         {
-            return db.Projects.First(p=>p.Id == id).ProjectTasks.ToList();
+            return database.Projects.First(p => p.Id == id).ProjectTasks.ToList();
         }
 
-        public static List<Project> AllProjectsByUser(string id)
+        public static List<Project> AllProjectsByUser(ApplicationDbContext database, string id)
         {
-            return db.Users.Find(id).Projects.ToList();
+            return database.Users.Find(id).Projects.ToList();
         }
     }
 }
