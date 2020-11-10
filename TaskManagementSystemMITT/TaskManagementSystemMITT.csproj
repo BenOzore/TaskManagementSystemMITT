@@ -199,6 +199,10 @@
     <Compile Include="Migrations\202011092110549_AddedPriority.Designer.cs">
       <DependentUpon>202011092110549_AddedPriority.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011100232213_AddBudgetPropertyToProjectAndTask.cs" />
+    <Compile Include="Migrations\202011100232213_AddBudgetPropertyToProjectAndTask.Designer.cs">
+      <DependentUpon>202011100232213_AddBudgetPropertyToProjectAndTask.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -342,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011092110549_AddedPriority.resx">
       <DependentUpon>202011092110549_AddedPriority.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011100232213_AddBudgetPropertyToProjectAndTask.resx">
+      <DependentUpon>202011100232213_AddBudgetPropertyToProjectAndTask.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

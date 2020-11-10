@@ -30,7 +30,9 @@ namespace TaskManagementSystemMITT.Models
         public bool IsCompleted { get; set; }
 
         public Priority Priority { get; set; }
-        
+        [Required]
+        public int Budget { get; set; }
+
     }
 
     public enum Priority
