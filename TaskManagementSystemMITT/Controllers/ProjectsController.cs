@@ -43,7 +43,7 @@ namespace TaskManagementSystemMITT.Controllers
         [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.UserId = User.Identity.GetUserId();
             return View();
         }
 
@@ -60,8 +60,7 @@ namespace TaskManagementSystemMITT.Controllers
                 db.SaveChanges();
                 return Redirect("~/Manage/index");
             }
-            var userId = User.Identity.GetUserId();
-            ViewBag.UserId = userId;
+            ViewBag.UserId = User.Identity.GetUserId();
 
             return View(project);
         }

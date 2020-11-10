@@ -57,23 +57,29 @@
         {
             if (!task.IsCompleted)
             {
-                <table style="width: 35%;border:groove; ">
-                    <tr>
-                        <th>Task</th>
-                    </tr>
-                    <tr>
-                        <td>@task.Description</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Priority: @task.Priority<br />
-                            Percentage: @task.PercentCompleted <br/>
-                            @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "Edit", "Task", new { Id = task.Id }, null) :
+    <table style="width: 35%;border:groove; ">
+        <tr>
+            <th>Task</th>
+        </tr>
+        <tr>
+            <td>@task.Description</td>
+        </tr>
+        <tr>
+            <td>
+                Priority: @task.Priority<br />
+                Percentage: @task.PercentCompleted <br />
+                @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "Edit", "Task", new { Id = task.Id }, null) :
 @Html.ActionLink("Move to Completed", "Edit", "Task", new { Id = task.Id }, null))
-                        </td>
-                    </tr>
+            </td>
+        </tr>
+        <tr>
+            <td>Budget: @task.Budget</td>
+        </tr>
+        <tr>
+            <td>Cost: @task.GetCost(task.Id)</td>
+        </tr>
 
-                </table>
+    </table>
                 <br />
             }
         }
@@ -85,24 +91,30 @@
         {
             if (task.IsCompleted)
             {
-                <table style="width: 35%;border:groove; ">
+    <table style="width: 35%;border:groove; ">
 
-                    <tr>
-                        <th>Task</th>
-                    </tr>
-                    <tr>
-                        <td>@task.Description</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Priority: @task.Priority<br />
-             
-                            @(string.IsNullOrEmpty(task.Comment) ? @Html.ActionLink("Add Comments ", "Comment", "Task", new { Id = task.Id }, null) :
+        <tr>
+            <th>Task</th>
+        </tr>
+        <tr>
+            <td>@task.Description</td>
+        </tr>
+        <tr>
+            <td>
+                Priority: @task.Priority<br />
+
+                @(string.IsNullOrEmpty(task.Comment) ? @Html.ActionLink("Add Comments ", "Comment", "Task", new { Id = task.Id }, null) :
 @Html.ActionLink("Show Comment", "Comment", "Task", new { Id = task.Id }, null))
 
-                        </td>
-                    </tr>
-                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>Budget: @task.Budget</td>
+        </tr>
+        <tr>
+            <td>Cost: @task.GetCost(task.Id)</td>
+        </tr>
+    </table>
                 <br />
 
 
