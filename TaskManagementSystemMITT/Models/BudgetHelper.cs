@@ -7,15 +7,20 @@ namespace TaskManagementSystemMITT.Models
 {
     public static class BudgetHelper
     {
-        static ApplicationDbContext db = new ApplicationDbContext();
 
-        public static double GetTotalCostForProject(int projectId)
+        public static double GetTotalCostForProject(ApplicationDbContext database, int projectId)
         {
-            return db.Projects.Find(projectId).ProjectTasks.Sum(t => t.User.Salary * (t.EndDateTime - t.StartDateTime).TotalDays) + db.Projects.Find(projectId).User.Salary;
+            return database.Projects.Find(projectId).ProjectTasks.Sum(t => t.User.Salary * (t.EndDateTime - t.StartDateTime).TotalDays) + database.Projects.Find(projectId).User.Salary;
         }
-        public static List<Project> GetProjectsExceedBudget()
+        public static double GetTotalCostForTask(ApplicationDbContext database, int taskId)
         {
-            return db.Projects.Where(p => p.Budget < GetTotalCostForProject(p.Id)).ToList();
+            var task = database.Tasks.Find(taskId);
+            return task.User.Salary * ((task.EndDateTime - task.StartDateTime).TotalDays);
+        }
+
+        public static List<Project> GetProjectsExceedBudget(ApplicationDbContext database)
+        {
+            return database.Projects.Where(p => p.Budget < GetTotalCostForProject(database, p.Id)).ToList();
         }
     }
 }
