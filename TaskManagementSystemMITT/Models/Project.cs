@@ -26,6 +26,8 @@ namespace TaskManagementSystemMITT.Models
         public DateTime DueDate { get; set; }
 
         public Priority Priority { get; set; }
+        [Required]
+        public int Budget { get; set; }
     }
 
     

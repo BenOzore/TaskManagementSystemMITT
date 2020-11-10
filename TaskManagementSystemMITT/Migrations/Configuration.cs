@@ -50,7 +50,8 @@ namespace TaskManagementSystemMITT.Migrations
             {
                 UserName = "manager@mysite.com",
                 Email = "manager@mysite.com",
-                PasswordHash = PasswordHash.HashPassword("123456")
+                PasswordHash = PasswordHash.HashPassword("123456"),
+                Salary = 30
             };
             if (!context.Users.Any(u => u.UserName == "manager@mysite.com"))
             {
@@ -64,7 +65,8 @@ namespace TaskManagementSystemMITT.Migrations
             {
                 UserName = "developer@mysite.com",
                 Email = "developer@mysite.com",
-                PasswordHash = PasswordHash.HashPassword("123456")
+                PasswordHash = PasswordHash.HashPassword("123456"),
+                Salary = 20
             };
             if (!context.Users.Any(u => u.UserName == "developer@mysite.com"))
             {
@@ -84,7 +86,8 @@ namespace TaskManagementSystemMITT.Migrations
                     Description = "Task management system with developers and project managers used to manage simple projects.",
                     DueDate = new DateTime(2020,11,13),
                     UserId = user1.Id,
-                    Priority = Priority.Low
+                    Priority = Priority.Low,
+                    Budget = 300
                 },
                 new Project
                 {
@@ -93,7 +96,8 @@ namespace TaskManagementSystemMITT.Migrations
                     Description = "Online task management system with numerous templates",
                     DueDate = new DateTime(2020,11,04),
                     UserId = user1.Id,
-                    Priority = Priority.High
+                    Priority = Priority.High,
+                    Budget = 300
                 }
             };
             context.Projects.AddOrUpdate(t => t.Name, projects);
@@ -111,7 +115,8 @@ namespace TaskManagementSystemMITT.Migrations
                     IsCompleted = false,
                     Priority = Priority.Low,
                     UserId = user2.Id,
-                    ProjectId = 1
+                    ProjectId = 1,
+                    Budget = 30
                 },
                 new ProjectTask
                 {
@@ -122,7 +127,8 @@ namespace TaskManagementSystemMITT.Migrations
                     IsCompleted = false,
                     Priority = Priority.High,
                     UserId = user2.Id,
-                    ProjectId = 2
+                    ProjectId = 2,
+                    Budget = 30
                 },
                 new ProjectTask
                 {
@@ -133,7 +139,8 @@ namespace TaskManagementSystemMITT.Migrations
                     IsCompleted = true,
                     Priority = Priority.Low,
                     UserId = user2.Id,
-                    ProjectId = 2
+                    ProjectId = 2,
+                    Budget = 30
                 },
                  new ProjectTask
                  {
@@ -144,7 +151,8 @@ namespace TaskManagementSystemMITT.Migrations
                     IsCompleted = true,
                     Priority = Priority.Medium,
                     UserId = user2.Id,
-                    ProjectId = 2                   
+                    ProjectId = 2,
+                    Budget = 30
                  }
             };
             context.Tasks.AddOrUpdate(t => t.Description, tasks);

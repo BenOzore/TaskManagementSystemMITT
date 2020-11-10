@@ -17,7 +17,7 @@ namespace TaskManagementSystemMITT.Models
             Projects = new HashSet<Project>();
             Tasks = new HashSet<ProjectTask>();   
         }
-
+        public int Salary { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
         public virtual ICollection<ProjectTask> Tasks { get; set; }
