@@ -121,7 +121,7 @@ else
     <h3> Project Manager Dashboard for @ViewBag.User.UserName</h3>
     <div class="floatleft">@Html.ActionLink("Create a New Project", "Create", "Projects")</div>
     <div class="floatleft">@Html.ActionLink("Create a New Task", "Create", "Task")</div>
-    <div class="floatright">@Html.ActionLink("Show projects that exceed budget", "ShowProjectsExceedBudget", "Manage", new { Id = ViewBag.User.Id }, null)</div>
+    @*<div class="floatright">@Html.ActionLink("Show projects that exceed budget", "ShowProjectsExceedBudget", "Manage", new { Id = ViewBag.User.Id }, null)</div>*@
     foreach (var project in Model.Projects)
     {
         <table style="width: 61%;border:groove;">
