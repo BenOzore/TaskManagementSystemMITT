@@ -50,7 +50,8 @@ namespace TaskManagementSystemMITT.Migrations
             {
                 UserName = "manager@mysite.com",
                 Email = "manager@mysite.com",
-                PasswordHash = PasswordHash.HashPassword("123456")
+                PasswordHash = PasswordHash.HashPassword("123456"),
+                Salary = 30
             };
             if (!context.Users.Any(u => u.UserName == "manager@mysite.com"))
             {
@@ -64,7 +65,8 @@ namespace TaskManagementSystemMITT.Migrations
             {
                 UserName = "developer@mysite.com",
                 Email = "developer@mysite.com",
-                PasswordHash = PasswordHash.HashPassword("123456")
+                PasswordHash = PasswordHash.HashPassword("123456"),
+                Salary = 20
             };
             if (!context.Users.Any(u => u.UserName == "developer@mysite.com"))
             {

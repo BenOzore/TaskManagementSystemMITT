@@ -80,6 +80,7 @@ namespace TaskManagementSystemMITT.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
         public string Role { get; set; }
+        public string Salary { get; set; }
     }
 
     public class ResetPasswordViewModel
