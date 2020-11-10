@@ -63,7 +63,6 @@ namespace TaskManagementSystemMITT.Controllers
             if (ModelState.IsValid)
             {
                 TaskHelper.CreateTask(projectTask);
-                db.SaveChanges();
                 return Redirect("~/Manage/index");
             }
             var userId = User.Identity.GetUserId();
