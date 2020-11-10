@@ -49,7 +49,7 @@ namespace TaskManagementSystemMITT.Models
 
         public static List<ProjectTask> AllTasksByProject(ApplicationDbContext database, int id)
         {
-            return database.Projects.First(p => p.Id == id).ProjectTasks.ToList();
+            return database.Projects.First(p => p.Id == id).ProjectTasks.OrderByDescending(i=>i.PercentCompleted).ToList();
         }
 
         public static List<Project> AllProjectsByUser(ApplicationDbContext database, string id)

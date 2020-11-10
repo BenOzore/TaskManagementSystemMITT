@@ -58,7 +58,7 @@ namespace TaskManagementSystemMITT.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDateTime,EndDateTime,ProjectId,UserId,PercentCompleted,Priority")] ProjectTask projectTask)
+        public ActionResult Create(ProjectTask projectTask)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace TaskManagementSystemMITT.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDateTime,EndDateTime,ProjectId,UserId,IsCompleted,PercentCompleted,Comment,Priority")] ProjectTask projectTask)
+        public ActionResult Edit(ProjectTask projectTask)
         {
             if (ModelState.IsValid)
             {
@@ -123,6 +123,32 @@ namespace TaskManagementSystemMITT.Controllers
             {
                 return HttpNotFound();
             }
+            return View(projectTask);
+        }
+
+        public ActionResult Comment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ProjectTask projectTask = TaskHelper.GetTask((int)id);
+            if (projectTask == null)
+            {
+                return HttpNotFound();
+            }
+            return View(projectTask);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Comment(ProjectTask projectTask)
+        {
+            if (ModelState.IsValid)
+            {
+                TaskHelper.EditTask(projectTask);
+                return Redirect("~/task/index/"+ projectTask.Id);
+            }
+
             return View(projectTask);
         }
 
