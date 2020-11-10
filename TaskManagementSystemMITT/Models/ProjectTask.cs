@@ -10,6 +10,7 @@ namespace TaskManagementSystemMITT.Models
 {
     public class ProjectTask
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
@@ -32,6 +33,10 @@ namespace TaskManagementSystemMITT.Models
         public Priority Priority { get; set; }
         [Required]
         public int Budget { get; set; }
+        public double GetCost(int id)
+        {
+            return BudgetHelper.GetTotalCostForTask(db, id);
+        }
 
     }
 
