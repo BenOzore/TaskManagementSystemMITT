@@ -106,10 +106,6 @@
         <tr>
             <td>
                 Priority: @task.Priority<br />
-
-                @(string.IsNullOrEmpty(task.Comment) ? @Html.ActionLink("Add Comments ", "Comment", "Task", new { Id = task.Id }, null) :
-@Html.ActionLink("Show Comment", "Comment", "Task", new { Id = task.Id }, null))
-
             </td>
         </tr>
         <tr>
