@@ -9,9 +9,9 @@ namespace TaskManagementSystemMITT.Models
     {
         static ApplicationDbContext db = new ApplicationDbContext();
 
-        public static int GetTotalCostForProject(int projectId)
+        public static double GetTotalCostForProject(int projectId)
         {
-            return db.Projects.Find(projectId).ProjectTasks.Sum(t => t.User.Salary) + db.Projects.Find(projectId).User.Salary;
+            return db.Projects.Find(projectId).ProjectTasks.Sum(t => t.User.Salary * (t.EndDateTime - t.StartDateTime).TotalDays) + db.Projects.Find(projectId).User.Salary;
         }
         public static List<Project> GetProjectsExceedBudget()
         {
