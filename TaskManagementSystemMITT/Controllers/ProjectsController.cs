@@ -43,18 +43,27 @@ namespace TaskManagementSystemMITT.Controllers
         [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
-        // POST: Projects/Create
+        // POST: Projects1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Manager")]
         [HttpPost]
-        public ActionResult Create(string name, DateTime dueDate)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Name,Description,UserId,DueDate,Priority,Budget")] Project project)
         {
-            ProjectHelper.CreateProject(name, User.Identity.GetUserId(), dueDate);
-            return RedirectToAction("Index", "Manage");
+            if (ModelState.IsValid)
+            {
+                ProjectHelper.CreateProject(project);
+                db.SaveChanges();
+                return Redirect("~/Manage/index");
+            }
+            var userId = User.Identity.GetUserId();
+            ViewBag.UserId = userId;
+
+            return View(project);
         }
 
         // GET: Projects/Edit/5
