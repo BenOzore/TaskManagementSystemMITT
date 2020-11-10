@@ -66,7 +66,7 @@
                         <tr>
                             <td>
                                 Priority: @task.Priority<br/>
-                                @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "UpdateProgress", "TaskHelper", new { Id = task.Id }, null) :
+                                @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "Edit", "Task", new { Id = task.Id }, null) :
                                 @Html.ActionLink("Move to Completed", "MarkCompleted", "TaskHelper", new { Id = task.Id }, null))
                             </td>
                         </tr>
