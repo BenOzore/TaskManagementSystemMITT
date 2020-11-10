@@ -364,13 +364,20 @@ namespace TaskManagementSystemMITT.Controllers
             return View("GetAllTasksForProject", result);
         }
 
-        public ActionResult HideCompletedTasksForUser(string Id)
+        public async Task<ActionResult> HideCompletedTasksForUser(string Id)
         {
             ViewBag.User = db.Users.Find(Id);
+            var model = new IndexViewModel
+            {
+                HasPassword = HasPassword(),
+                PhoneNumber = await UserManager.GetPhoneNumberAsync(Id),
+                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(Id),
+                Logins = await UserManager.GetLoginsAsync(Id),
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(Id),
+                Tasks = TaskHelper.GetAllTaskByUser(Id).Where(t => t.IsCompleted == false).ToList()
+            };
 
-            var tasks = TaskHelper.GetAllTaskByUser(Id);
-            var result = tasks.Where(t => t.IsCompleted == false).ToList();
-            return View("Index", result);
+            return View("Index", model);
         }
 
 
