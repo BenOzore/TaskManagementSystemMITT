@@ -9,6 +9,7 @@ namespace TaskManagementSystemMITT.Models
 {
     public class Project
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public Project()
         {
             ProjectTasks = new HashSet<ProjectTask>();
@@ -28,6 +29,10 @@ namespace TaskManagementSystemMITT.Models
         public Priority Priority { get; set; }
         [Required]
         public int Budget { get; set; }
+        public double GetCost(int id)
+        {
+            return BudgetHelper.GetTotalCostForProject(db, id);
+        }
     }
 
     
