@@ -56,24 +56,28 @@
             {
                 if (!task.IsCompleted)
                 {
-                    <table style="width: 35%;border:groove; ">
-                        <tr>
-                            <th>Task</th>
-                        </tr>
-                        <tr>
-                            <td>@task.Description</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Priority: @task.Priority<br />
-                                @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "Edit", "Task", new { Id = task.Id }, null) :
-                                @Html.ActionLink("Move to Completed", "MarkCompleted", "TaskHelper", new { Id = task.Id }, null))
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Cost: @task.GetCost(task.Id)</td>
-                        </tr>
-                    </table>
+        <table style="width: 35%;border:groove; ">
+            <tr>
+                <th>Task</th>
+            </tr>
+            <tr>
+                <td>@task.Description</td>
+            </tr>
+            <tr>
+                <td>
+                    Priority: @task.Priority
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Completed: @task.PercentCompleted %<br />
+                    @(@Html.ActionLink("Update Progress", "Edit", "Task", new { Id = task.Id }, null))
+                </td>
+            </tr>
+            <tr>
+                <td>Cost: @task.GetCost(task.Id)</td>
+            </tr>
+        </table>
                     <br />
                 }
             }
