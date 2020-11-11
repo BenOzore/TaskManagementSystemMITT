@@ -142,6 +142,9 @@ else
             Tasks remaining: @project.ProjectTasks.Count() | &nbsp; @Html.ActionLink("View Tasks", "GetAllTasksForProject", "Manage", new { Id = project.Id, }, null)
         </td>
     </tr>
+    <tr>
+        <td>Completed: @project.GetProgress(project.Id) %</td>
+    </tr>
 
 </table>
         <br />

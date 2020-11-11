@@ -56,5 +56,17 @@ namespace TaskManagementSystemMITT.Models
         {
             return database.Users.Find(id).Projects.ToList();
         }
+
+        public static double GetProjectProgress(ApplicationDbContext database, int id)
+        {
+            var tasksForProject = AllTasksByProject(database, id);
+            var total = tasksForProject.Count();
+            var complete = tasksForProject.Where(t => t.IsCompleted == true).ToList().Count();
+            var progress = ((double)complete/(double)total)*100;
+
+            return progress;
+        }
+
+
     }
 }

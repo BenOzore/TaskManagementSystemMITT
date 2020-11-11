@@ -84,6 +84,15 @@ namespace TaskManagementSystemMITT.Models
             return false;
         }
 
+        public static void MarkCompleted(ApplicationDbContext database, int id)
+        {
+            var task = database.Tasks.Find(id);
+
+            task.IsCompleted = true;
+            database.SaveChanges();
+
+        }
+
 
     }
 
