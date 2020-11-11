@@ -36,8 +36,6 @@ namespace TaskManagementSystemMITT.Models
         public virtual ICollection<Notification> Notifications { get; set; }
 
         public Priority Priority { get; set; }
-        [Required]
-        public int Budget { get; set; }
         public double GetCost(int id)
         {
             return BudgetHelper.GetTotalCostForTask(db, id);

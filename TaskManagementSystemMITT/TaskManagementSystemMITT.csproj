@@ -207,6 +207,10 @@
     <Compile Include="Migrations\202011100453365_AddSalaryPropertyToUser.Designer.cs">
       <DependentUpon>202011100453365_AddSalaryPropertyToUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011110238464_RemoveBudgetFromTask.cs" />
+    <Compile Include="Migrations\202011110238464_RemoveBudgetFromTask.Designer.cs">
+      <DependentUpon>202011110238464_RemoveBudgetFromTask.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202011102208421_AddedNotificationRelationToTaskAndProj.cs" />
     <Compile Include="Migrations\202011102208421_AddedNotificationRelationToTaskAndProj.Designer.cs">
       <DependentUpon>202011102208421_AddedNotificationRelationToTaskAndProj.cs</DependentUpon>
@@ -366,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011100453365_AddSalaryPropertyToUser.resx">
       <DependentUpon>202011100453365_AddSalaryPropertyToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011110238464_RemoveBudgetFromTask.resx">
+      <DependentUpon>202011110238464_RemoveBudgetFromTask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011102208421_AddedNotificationRelationToTaskAndProj.resx">
       <DependentUpon>202011102208421_AddedNotificationRelationToTaskAndProj.cs</DependentUpon>

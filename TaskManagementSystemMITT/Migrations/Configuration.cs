@@ -87,7 +87,7 @@ namespace TaskManagementSystemMITT.Migrations
                     DueDate = new DateTime(2020,11,13),
                     UserId = user1.Id,
                     Priority = Priority.Low,
-                    Budget = 300
+                    Budget = 10
                 },
                 new Project
                 {
@@ -117,8 +117,6 @@ namespace TaskManagementSystemMITT.Migrations
                     Priority = Priority.Low,
                     UserId = user2.Id,
                     ProjectId = 1,
-                    Budget = 30,
-                    
                 },
                 new ProjectTask
                 {
@@ -131,7 +129,6 @@ namespace TaskManagementSystemMITT.Migrations
                     Priority = Priority.High,
                     UserId = user2.Id,
                     ProjectId = 2,
-                    Budget = 30
                 },
                 new ProjectTask
                 {
@@ -144,7 +141,6 @@ namespace TaskManagementSystemMITT.Migrations
                     Priority = Priority.Low,
                     UserId = user2.Id,
                     ProjectId = 2,
-                    Budget = 30
                 },
                  new ProjectTask
                  {
@@ -157,7 +153,6 @@ namespace TaskManagementSystemMITT.Migrations
                     Priority = Priority.Medium,
                     UserId = user2.Id,
                     ProjectId = 2,
-                    Budget = 30
                  }
             };
             context.Tasks.AddOrUpdate(t => t.Description, tasks);
