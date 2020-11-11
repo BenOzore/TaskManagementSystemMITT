@@ -40,7 +40,10 @@ namespace TaskManagementSystemMITT.Models
         {
             return BudgetHelper.GetTotalCostForTask(db, id);
         }
-
+        public void MarkCompleted(int id)
+        {
+            TaskHelper.MarkCompleted(db, id);
+        }
     }
 
     public enum Priority
