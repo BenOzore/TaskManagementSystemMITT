@@ -101,7 +101,7 @@ namespace TaskManagementSystemMITT.Controllers
             if (ModelState.IsValid)
             {
                 TaskHelper.EditTask(projectTask);
-                return Redirect("~/Manage/index");
+                return Redirect($"~/Manage/GetAllTasksForProject/{projectTask.ProjectId}");
             }
             var users = UserRoleHelper.AllUsersInRole("Developer");
             var userId = users.Select(i => new SelectListItem() { Text = i.UserName, Value = i.Id.ToString() }).ToList();

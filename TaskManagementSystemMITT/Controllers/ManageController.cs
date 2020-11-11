@@ -351,7 +351,7 @@ namespace TaskManagementSystemMITT.Controllers
         {
             ViewBag.Project = db.Projects.Find(Id);
 
-            var result = ProjectHelper.AllTasksByProject(db, Id);
+            var result = ProjectHelper.AllTasksByProject(db, Id).OrderByDescending(p => p.Priority).ToList();
             return View(result);
         }
 
@@ -359,7 +359,7 @@ namespace TaskManagementSystemMITT.Controllers
         {
             ViewBag.Project = db.Projects.Find(Id);
 
-            var tasks = ProjectHelper.AllTasksByProject(db, Id);
+            var tasks = ProjectHelper.AllTasksByProject(db, Id).OrderByDescending(p => p.Priority).ToList();
             var result = tasks.Where(t => t.IsCompleted == false).ToList();
             return View("GetAllTasksForProject", result);
         }
@@ -374,7 +374,7 @@ namespace TaskManagementSystemMITT.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(Id),
                 Logins = await UserManager.GetLoginsAsync(Id),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(Id),
-                Tasks = TaskHelper.GetAllTaskByUser(Id).Where(t => t.IsCompleted == false).ToList()
+                Tasks = TaskHelper.GetAllTaskByUser(Id).Where(t => t.IsCompleted == false).OrderByDescending(p => p.Priority).ToList()
             };
 
             return View("Index", model);
@@ -397,7 +397,7 @@ namespace TaskManagementSystemMITT.Controllers
         }
         public ActionResult ShowAllTasksForProject(int Id)
         {
-            var result = ProjectHelper.AllTasksByProject(db, Id);
+            var result = ProjectHelper.AllTasksByProject(db, Id).OrderByDescending(p => p.Priority).ToList();
             return View("GetAllTasksForProject", result);
 
         }
