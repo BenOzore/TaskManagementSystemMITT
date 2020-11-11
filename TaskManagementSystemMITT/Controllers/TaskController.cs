@@ -146,7 +146,7 @@ namespace TaskManagementSystemMITT.Controllers
             if (ModelState.IsValid)
             {
                 TaskHelper.EditTask(projectTask);
-                return Redirect("~/task/index/"+ projectTask.Id);
+                return RedirectToAction("Index","Manage");
             }
 
             return View(projectTask);
