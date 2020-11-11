@@ -71,9 +71,6 @@
                 </td>
             </tr>
             <tr>
-                <td>Budget: @task.Budget</td>
-            </tr>
-            <tr>
                 <td>Cost: @task.GetCost(task.Id)</td>
             </tr>
         </table>
@@ -101,9 +98,6 @@
                     @(task.Comment == null ? @Html.ActionLink("Add a Comment", "Comment", "Task", new { Id = task.Id }, null) :
                                 @Html.ActionLink("View Comments", "ViewComment", "TaskHelper", new { Id = task.Id }, null))
                 </td>
-            </tr>
-            <tr>
-                <td>Budget: @task.Budget</td>
             </tr>
             <tr>
                 <td>Cost: @task.GetCost(task.Id)</td>
