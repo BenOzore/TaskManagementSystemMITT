@@ -56,24 +56,27 @@
             {
                 if (!task.IsCompleted)
                 {
-                    <table style="width: 35%;border:groove; ">
-                        <tr>
-                            <th>Task</th>
-                        </tr>
-                        <tr>
-                            <td>@task.Description</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Priority: @task.Priority<br />
-                                @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "Edit", "Task", new { Id = task.Id }, null) :
+        <table style="width: 35%;border:groove; ">
+            <tr>
+                <th>Task</th>
+            </tr>
+            <tr>
+                <td>@task.Description</td>
+            </tr>
+            <tr>
+                <td>
+                    Priority: @task.Priority<br />
+                    @(task.PercentCompleted < 100 ? @Html.ActionLink("Update Progress ", "Edit", "Task", new { Id = task.Id }, null) :
                                 @Html.ActionLink("Move to Completed", "MarkCompleted", "TaskHelper", new { Id = task.Id }, null))
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Cost: @task.GetCost(task.Id)</td>
-                        </tr>
-                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>Budget: @task.Budget</td>
+            </tr>
+            <tr>
+                <td>Cost: @task.GetCost(task.Id)</td>
+            </tr>
+        </table>
                     <br />
                 }
             }
@@ -84,25 +87,28 @@
             {
                 if (task.IsCompleted)
                 {
-                    <table style="width: 35%;border:groove; ">
+        <table style="width: 35%;border:groove; ">
 
-                        <tr>
-                            <th>Task</th>
-                        </tr>
-                        <tr>
-                            <td>@task.Description</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Priority: @task.Priority<br />
-                                @(task.Comment == null ? @Html.ActionLink("Add a Comment", "AddComment", "TaskHelper", new { Id = task.Id }, null) :
+            <tr>
+                <th>Task</th>
+            </tr>
+            <tr>
+                <td>@task.Description</td>
+            </tr>
+            <tr>
+                <td>
+                    Priority: @task.Priority<br />
+                    @(task.Comment == null ? @Html.ActionLink("Add a Comment", "Comment", "Task", new { Id = task.Id }, null) :
                                 @Html.ActionLink("View Comments", "ViewComment", "TaskHelper", new { Id = task.Id }, null))
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Cost: @task.GetCost(task.Id)</td>
-                        </tr>
-                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>Budget: @task.Budget</td>
+            </tr>
+            <tr>
+                <td>Cost: @task.GetCost(task.Id)</td>
+            </tr>
+        </table>
                     <br />
                 }
             }
@@ -114,38 +120,36 @@ else
 {
     <h3> Project Manager Dashboard for @ViewBag.User.UserName</h3>
     <div class="floatleft">@Html.ActionLink("Create a New Project", "Create", "Projects")</div>
-    <div class="floatleft">@Html.ActionLink("Create a New Task", "Create", "Task")</div>
-    <div class="floatright">@Html.ActionLink("Show all", "Index")</div>
-    <div class="floatright">@Html.ActionLink("Show projects that exceed budget", "ShowProjectsExceedBudget", "Manage", new { Id = ViewBag.User.Id }, null)</div>
+    <div class="floatright">@Html.ActionLink("Create a New Task", "Create", "Task")</div>
 
     foreach (var project in Model.Projects)
     {
-        <table style="width: 61%;border:groove;">
-            <tr>
-                <th>Project: @project.Name <span style="float:right;">@Html.ActionLink("Delete Project", "Delete", "Projects", new { Id = project.Id, }, null)</span></th>
-            </tr>
-            <tr>
-                <td>Priority: @project.Priority</td>
-            </tr>
-            <tr>
-                <td>@project.Description</td>
-            </tr>
-            <tr>
-                <td>Due Date: @project.DueDate.ToString()</td>
-            </tr>
-            <tr>
-                <td>Budget: @project.Budget</td>
-            </tr>
-            <tr>
-                <td>Cost: @project.GetCost(project.Id)</td>
-            </tr>
-            <tr>
-                <td>
-                    Tasks remaining: @project.ProjectTasks.Count() | &nbsp; @Html.ActionLink("View Tasks", "GetAllTasksForProject", "Manage", new { Id = project.Id, }, null)
-                </td>
-            </tr>
+<table style="width: 61%;border:groove;">
+    <tr>
+        <th>Project: @project.Name <span style="float:right;">@Html.ActionLink("Delete Project", "Delete", "Projects", new { Id = project.Id, }, null)</span></th>
+    </tr>
+    <tr>
+        <td>Priority: @project.Priority</td>
+    </tr>
+    <tr>
+        <td>@project.Description</td>
+    </tr>
+    <tr>
+        <td>Due Date: @project.DueDate.ToString()</td>
+    </tr>
+    <tr>
+        <td>Budget: @project.Budget</td>
+    </tr>
+    <tr>
+        <td>Cost: @project.GetCost(project.Id)</td>
+    </tr>
+    <tr>
+        <td>
+            Tasks remaining: @project.ProjectTasks.Count() | &nbsp; @Html.ActionLink("View Tasks", "GetAllTasksForProject", "Manage", new { Id = project.Id, }, null)
+        </td>
+    </tr>
 
-        </table>
+</table>
         <br />
     }
 

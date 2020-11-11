@@ -55,6 +55,10 @@
         <h5>Working</h5>
         @foreach (var task in Model)
         {
+            if (task.PercentCompleted >= 100)
+            {
+                task.IsCompleted = true;
+            }
             if (!task.IsCompleted)
             {
     <table style="width: 35%;border:groove; ">
@@ -99,10 +103,6 @@
         <tr>
             <td>
                 Priority: @task.Priority<br />
-
-                @(string.IsNullOrEmpty(task.Comment) ? @Html.ActionLink("Add Comments ", "Comment", "Task", new { Id = task.Id }, null) :
-@Html.ActionLink("Show Comment", "Comment", "Task", new { Id = task.Id }, null))
-
             </td>
         </tr>
         <tr>
