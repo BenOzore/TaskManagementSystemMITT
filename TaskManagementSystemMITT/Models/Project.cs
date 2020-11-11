@@ -13,12 +13,14 @@ namespace TaskManagementSystemMITT.Models
         public Project()
         {
             ProjectTasks = new HashSet<ProjectTask>();
+            Notifications = new HashSet<Notification>();
         }
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
         public virtual ICollection<ProjectTask> ProjectTasks { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
         
         public virtual ApplicationUser User { get; set; }
         

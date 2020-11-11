@@ -87,7 +87,7 @@ namespace TaskManagementSystemMITT.Migrations
                     DueDate = new DateTime(2020,11,13),
                     UserId = user1.Id,
                     Priority = Priority.Low,
-                    Budget = 300
+                    Budget = 10
                 },
                 new Project
                 {
@@ -108,6 +108,7 @@ namespace TaskManagementSystemMITT.Migrations
             {
                 new ProjectTask
                 {
+                    Id = 1,
                     Name = "Seed method",
                     Description = "Writing seed method for task management system",
                     StartDateTime = DateTime.Parse("06/11/2020", new System.Globalization.CultureInfo("pt-BR")),
@@ -116,10 +117,10 @@ namespace TaskManagementSystemMITT.Migrations
                     Priority = Priority.Low,
                     UserId = user2.Id,
                     ProjectId = 1,
-                    Budget = 30
                 },
                 new ProjectTask
                 {
+                    Id = 2,
                     Name = "Project Helper class",
                     Description = "Create Project helper class",
                     StartDateTime = DateTime.Parse("05/11/2020", new System.Globalization.CultureInfo("pt-BR")),
@@ -128,10 +129,10 @@ namespace TaskManagementSystemMITT.Migrations
                     Priority = Priority.High,
                     UserId = user2.Id,
                     ProjectId = 2,
-                    Budget = 30
                 },
                 new ProjectTask
                 {
+                    Id = 3,
                     Name = "Task Helper method",
                     Description = "Creating task helper classes and methods",
                     StartDateTime = DateTime.Parse("05/11/2020", new System.Globalization.CultureInfo("pt-BR")),
@@ -140,10 +141,10 @@ namespace TaskManagementSystemMITT.Migrations
                     Priority = Priority.Low,
                     UserId = user2.Id,
                     ProjectId = 2,
-                    Budget = 30
                 },
                  new ProjectTask
                  {
+                     Id = 4,
                     Name = "Project Helper view",
                     Description = "Creating project helper controller and view for task management system",
                     StartDateTime = DateTime.Parse("04/11/2020", new System.Globalization.CultureInfo("pt-BR")),
@@ -152,10 +153,54 @@ namespace TaskManagementSystemMITT.Migrations
                     Priority = Priority.Medium,
                     UserId = user2.Id,
                     ProjectId = 2,
-                    Budget = 30
                  }
             };
             context.Tasks.AddOrUpdate(t => t.Description, tasks);
+
+            Notification[] notifications =
+            {
+                new Notification
+                {
+                    Body = "This project needs to be completed ASAP!!!",
+                    DateTime = DateTime.Now,
+                    Urgent = true,
+                    ProjectId = 1,
+                    ProjectTaskId = 2,
+                    IsOpened = false,
+                    UserId = user1.Id,
+                },
+                new Notification
+                {
+                    Body = "This project has passed the deadline",
+                    DateTime = DateTime.Now,
+                    Urgent = false,
+                    ProjectId = 2,
+                    ProjectTaskId = 2,
+                    IsOpened = false,
+                    UserId = user1.Id,
+                },
+                new Notification
+                {
+                    Body = "This task will be due soon",
+                    DateTime = DateTime.Now,
+                    Urgent = true,
+                    ProjectId = 1,
+                    ProjectTaskId = 2,
+                    IsOpened = false,
+                    UserId = user1.Id,
+                },
+                new Notification
+                {
+                    Body = "This task is completed",
+                    DateTime = DateTime.Now,
+                    Urgent = true,
+                    ProjectTaskId = 3,
+                    ProjectId = 2,
+                    IsOpened = false,
+                    UserId = user1.Id,
+                },
+            };
+            context.Notifications.AddOrUpdate(t => t.Body, notifications);
         }
     }
 }

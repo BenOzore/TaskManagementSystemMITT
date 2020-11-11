@@ -380,8 +380,22 @@ namespace TaskManagementSystemMITT.Controllers
             return View("Index", model);
         }
 
+        public async Task<ActionResult> ShowProjectsExceedBudget(string Id)
+        {
+            ViewBag.User = db.Users.Find(Id);
+            var model = new IndexViewModel
+            {
+                HasPassword = HasPassword(),
+                PhoneNumber = await UserManager.GetPhoneNumberAsync(Id),
+                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(Id),
+                Logins = await UserManager.GetLoginsAsync(Id),
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(Id),
+                Projects = BudgetHelper.GetProjectsExceedBudget(db),
+            };
 
-            public ActionResult ShowAllTasksForProject(int Id)
+            return View("Index", model);
+        }
+        public ActionResult ShowAllTasksForProject(int Id)
         {
             var result = ProjectHelper.AllTasksByProject(db, Id);
             return View("GetAllTasksForProject", result);

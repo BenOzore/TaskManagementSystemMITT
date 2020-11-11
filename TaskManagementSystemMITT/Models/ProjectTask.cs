@@ -10,6 +10,10 @@ namespace TaskManagementSystemMITT.Models
 {
     public class ProjectTask
     {
+        public ProjectTask()
+        {
+            Notifications = new HashSet<Notification>();
+        }
         private ApplicationDbContext db = new ApplicationDbContext();
         public int Id { get; set; }
         [Required]
@@ -29,10 +33,9 @@ namespace TaskManagementSystemMITT.Models
         
         public string UserId { get; set; }
         public bool IsCompleted { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
 
         public Priority Priority { get; set; }
-        [Required]
-        public int Budget { get; set; }
         public double GetCost(int id)
         {
             return BudgetHelper.GetTotalCostForTask(db, id);
