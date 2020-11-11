@@ -31,8 +31,6 @@ namespace TaskManagementSystemMITT.Models
         public bool IsCompleted { get; set; }
 
         public Priority Priority { get; set; }
-        [Required]
-        public int Budget { get; set; }
         public double GetCost(int id)
         {
             return BudgetHelper.GetTotalCostForTask(db, id);
