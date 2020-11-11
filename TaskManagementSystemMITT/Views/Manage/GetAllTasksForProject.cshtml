@@ -57,7 +57,7 @@
         {
             if (task.PercentCompleted >= 100)
             {
-                task.IsCompleted = true;
+                task.MarkCompleted(task.Id);
             }
             if (!task.IsCompleted)
             {

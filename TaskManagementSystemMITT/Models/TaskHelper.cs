@@ -89,6 +89,7 @@ namespace TaskManagementSystemMITT.Models
             var task = database.Tasks.Find(id);
 
             task.IsCompleted = true;
+            database.SaveChanges();
 
         }
 
