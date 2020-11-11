@@ -35,7 +35,7 @@ namespace TaskManagementSystemMITT.Models
         {
             return BudgetHelper.GetTotalCostForProject(db, id);
         }
-        public double GetProgress(int id)
+        public string GetProgress(int id)
         {
             return ProjectHelper.GetProjectProgress(db, id);
         }

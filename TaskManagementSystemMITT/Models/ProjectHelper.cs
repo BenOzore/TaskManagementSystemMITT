@@ -49,7 +49,7 @@ namespace TaskManagementSystemMITT.Models
 
         public static List<ProjectTask> AllTasksByProject(ApplicationDbContext database, int id)
         {
-            return database.Projects.First(p => p.Id == id).ProjectTasks.OrderByDescending(i=>i.PercentCompleted).ToList();
+            return database.Projects.First(p => p.Id == id).ProjectTasks.OrderByDescending(i => i.PercentCompleted).ToList();
         }
 
         public static List<Project> AllProjectsByUser(ApplicationDbContext database, string id)
@@ -57,14 +57,14 @@ namespace TaskManagementSystemMITT.Models
             return database.Users.Find(id).Projects.ToList();
         }
 
-        public static double GetProjectProgress(ApplicationDbContext database, int id)
+        public static string GetProjectProgress(ApplicationDbContext database, int id)
         {
             var tasksForProject = AllTasksByProject(database, id);
             var total = tasksForProject.Count();
             var complete = tasksForProject.Where(t => t.IsCompleted == true).ToList().Count();
-            var progress = ((double)complete/(double)total)*100;
+            var progress = ((float)complete / (float)total) * 100;
 
-            return progress;
+            return progress.ToString("0.00");
         }
 
 
