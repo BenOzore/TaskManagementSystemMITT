@@ -79,11 +79,16 @@ namespace TaskManagementSystemMITT.Controllers
             if (User.IsInRole("Manager"))
             {
                 model.Projects = ProjectHelper.AllProjectsByUser(db, userId).OrderByDescending(p => p.Priority).ToList();
-
+                NotificationHelper.CreateManagerNotifications(db, userId);
+                ViewBag.NotificationCount = db.Notifications.Where(t => t.UserId == userId).Count();
+                ViewBag.UnreadCount = db.Notifications.Where(t => t.UserId == userId && t.IsOpened == false).Count();
             }
             if (User.IsInRole("Developer"))
             {
                 model.Tasks = TaskHelper.GetAllTaskByUser(userId).OrderByDescending(t => t.Priority).ToList();
+                NotificationHelper.CreateTasksOneDayLeftForDev(db, userId);
+                ViewBag.NotificationCount = db.Notifications.Where(t => t.UserId == userId).Count();
+                ViewBag.UnreadCount = db.Notifications.Where(t => t.UserId == userId && t.IsOpened == false).Count();
             }
 
             return View(model);
@@ -411,6 +416,16 @@ namespace TaskManagementSystemMITT.Controllers
 
         }
 
+        public ActionResult ShowNotifications()
+        {
+            return View(NotificationHelper.GetNotificationsForUser(db, User.Identity.GetUserId()));
+        }
+
+        public ActionResult ReadAll()
+        {
+            NotificationHelper.ChangeStatus(db, User.Identity.GetUserId());
+            return RedirectToAction("Index");
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

@@ -46,7 +46,8 @@
     @Html.ActionLink("Hide Completed ", "HideCompletedTasksForUser", "Manage", new { Id = ViewBag.User.Id }, null)
     <br />
     @Html.ActionLink("Show All", "Index", "Manage", new { Id = ViewBag.User.Id }, null)
-
+    <br />
+    <div>Notifications: @Html.ActionLink($"{ViewBag.NotificationCount} | {ViewBag.UnreadCount}", "ShowNotifications", "Manage")</div>
     <h4>Tasks:</h4>
 
     <div class="container">
@@ -58,7 +59,7 @@
                 {
         <table style="width: 35%;border:groove; ">
             <tr>
-                <th>Task</th>
+                <th>@task.Name</th>
             </tr>
             <tr>
                 <td>@task.Description</td>
@@ -66,6 +67,11 @@
             <tr>
                 <td>
                     Priority: @task.Priority
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Due date: @task.EndDateTime
                 </td>
             </tr>
             <tr>
@@ -91,7 +97,7 @@
         <table style="width: 35%;border:groove; ">
 
             <tr>
-                <th>Task</th>
+                <th>@task.Name</th>
             </tr>
             <tr>
                 <td>@task.Description</td>
@@ -99,6 +105,11 @@
             <tr>
                 <td>
                     Priority: @task.Priority<br />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Due date: @task.EndDateTime
                 </td>
             </tr>
             <tr>
@@ -124,6 +135,7 @@ else
     <div class="floatleft">@Html.ActionLink("Create a New Task", "Create", "Task")</div>
     <div class="floatright">@Html.ActionLink("Show all", "Index")</div>
     <div class="floatright">@Html.ActionLink("Show projects that exceed budget", "ShowProjectsExceedBudget", "Manage", new { Id = ViewBag.User.Id }, null)</div>
+    <div>Notifications: @Html.ActionLink($"{ViewBag.NotificationCount} | {ViewBag.UnreadCount}", "ShowNotifications", "Manage")</div>
     foreach (var project in Model.Projects)
     {
         <table style="width: 61%;border:groove;">

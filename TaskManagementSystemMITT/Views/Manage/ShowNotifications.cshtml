@@ -1,0 +1,14 @@
+﻿@model List<TaskManagementSystemMITT.Models.Notification>
+@{
+    ViewBag.Title = "Notifications";
+}
+
+<h2>Notifications</h2>
+
+@foreach(var n in Model)
+{
+    <div>@n.IsOpened</div>
+    <div>@n.Body</div>
+}
+
+@Html.ActionLink("Back to dashboard", "ReadAll");
