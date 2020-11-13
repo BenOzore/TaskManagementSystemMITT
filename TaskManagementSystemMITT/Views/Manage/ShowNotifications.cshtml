@@ -15,8 +15,16 @@
             <td>@n.Body </td>
         </tr>
         <tr>
-            <td>Received By: @n.User.UserName</td>
-         </tr>
+            @if (n.User.UserName == User.Identity.Name)
+            {
+                <td>Received By: @n.User.UserName</td>
+            }
+            else
+            {
+                <td>Created By: @n.User.UserName</td>
+            }
+
+        </tr>
     </table>
 
 }

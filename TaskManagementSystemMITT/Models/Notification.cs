@@ -23,5 +23,6 @@ namespace TaskManagementSystemMITT.Models
         
         public string UserId { get; set; }
         public bool IsOpened { get; set; }
+        public  bool isForManager { get; set; }
     }
 }

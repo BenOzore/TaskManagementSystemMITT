@@ -161,6 +161,29 @@ namespace TaskManagementSystemMITT.Controllers
             return Redirect("~/Manage/index");
         }
 
+
+        public ActionResult AddNotes(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ProjectTask projectTask = TaskHelper.GetTask((int)id);
+            if (projectTask == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.TaskId = projectTask.Id;
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddNotes(string note,int id)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            NotificationHelper.CreateManagerTaskNotifications(db,id,note,User.Identity.GetUserId());
+            return RedirectToAction("Index", "Manage");  
+        }
         //protected override void Dispose(bool disposing)
         //{
         //    if (disposing)

@@ -217,6 +217,10 @@
     <Compile Include="Migrations\202011110257027_AddNotificationTable.Designer.cs">
       <DependentUpon>202011110257027_AddNotificationTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011130617340_notification.cs" />
+    <Compile Include="Migrations\202011130617340_notification.Designer.cs">
+      <DependentUpon>202011130617340_notification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BudgetHelper.cs" />
@@ -328,6 +332,7 @@
     <Content Include="Views\Manage\GetAllTasksForProject.cshtml" />
     <Content Include="Views\Task\Comment.cshtml" />
     <Content Include="Views\Manage\ShowNotifications.cshtml" />
+    <Content Include="Views\Task\AddNotes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -376,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011110257027_AddNotificationTable.resx">
       <DependentUpon>202011110257027_AddNotificationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011130617340_notification.resx">
+      <DependentUpon>202011130617340_notification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

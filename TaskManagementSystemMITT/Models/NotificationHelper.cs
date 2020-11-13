@@ -37,13 +37,30 @@ namespace TaskManagementSystemMITT.Models
 
         public static List<Notification> GetNotificationsForUser(ApplicationDbContext db, string userId)
         {
-            return db.Notifications.Where(n => n.UserId == userId).ToList();
+            if (UserRoleHelper.CheckIfUserInRole(userId, "Manager")) {
+                return db.Notifications.Where(n => n.UserId == userId || n.isForManager).ToList();
+            }
+            else
+            {
+                return db.Notifications.Where(n => n.UserId == userId && !n.isForManager).ToList();
+            }           
         }
 
         public static void ChangeStatus(ApplicationDbContext db, string userId)
         {
-            db.Notifications.Where(n => n.UserId == userId).ToList().ForEach(n => n.IsOpened = true);
-            db.SaveChanges();
+            if (UserRoleHelper.CheckIfUserInRole(userId, "Manager"))
+            {
+               // db.Notifications.Where(n => n.UserId == userId).ToList().ForEach(n => n.IsOpened = true);
+                db.Notifications.Where(n => n.isForManager).ToList().ForEach(n => n.IsOpened = true);
+                db.SaveChanges();
+            }
+            else
+            {
+                db.Notifications.Where(n => n.UserId == userId && !n.isForManager).ToList().ForEach(n => n.IsOpened = true);
+                db.SaveChanges();
+            }
+           
+            
         }
 
         public static void CreateManagerNotifications(ApplicationDbContext db, string userId)
@@ -54,7 +71,7 @@ namespace TaskManagementSystemMITT.Models
             {
                 if (
                     !db.Notifications.Any(n =>
-                        n.Body == p.Name+ " has unfinished tasks that pass due.")
+                        n.Body == p.Name + " has unfinished tasks that pass due.")
                     )
                 {
                     result.Add(
@@ -141,6 +158,25 @@ namespace TaskManagementSystemMITT.Models
             });
             db.Notifications.AddRange(result);
             db.SaveChanges();
+        }
+
+        public static void CreateManagerTaskNotifications(ApplicationDbContext db, int id, string note, string userId)
+        {
+            var t = db.Tasks.Where(i => !i.IsCompleted && i.Id == id).FirstOrDefault();
+            if (t != null)
+            {
+                db.Notifications.Add(new Notification
+                {
+                    Urgent = false,
+                    DateTime = DateTime.Now,
+                    ProjectTaskId = t.Id,
+                    UserId = userId,
+                    IsOpened = false,
+                    Body = t.Name + "  " + note,
+                    isForManager = true
+                });
+                db.SaveChanges();
+            }
         }
     }
 }

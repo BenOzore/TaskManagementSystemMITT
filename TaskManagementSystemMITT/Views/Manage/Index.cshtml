@@ -81,6 +81,12 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                   
+                    @(@Html.ActionLink("Add Notification", "AddNotes", "Task", new { Id = task.Id }, null))
+                </td>
+            </tr>
+            <tr>
                 <td>Cost: @task.GetCost(task.Id)</td>
             </tr>
         </table>
