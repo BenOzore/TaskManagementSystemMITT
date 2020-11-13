@@ -178,11 +178,11 @@ namespace TaskManagementSystemMITT.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddNotes(string note,int id)
+        public ActionResult AddNotes(string note, int id)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-            NotificationHelper.CreateManagerTaskNotifications(db,id,note,User.Identity.GetUserId());
-            return RedirectToAction("Index", "Manage");  
+            var task = db.Tasks.Find(id);
+            NotificationHelper.CreateManagerTaskNotifications(db, id, note, task.Project.UserId);
+            return RedirectToAction("Index", "Manage");
         }
         //protected override void Dispose(bool disposing)
         //{

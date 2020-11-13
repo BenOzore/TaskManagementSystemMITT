@@ -29,6 +29,7 @@ namespace TaskManagementSystemMITT.Models
             {
                 var proj = db.Projects.Find(id);
                 db.Tasks.RemoveRange(proj.ProjectTasks);
+                db.Notifications.RemoveRange(db.Notifications.Where(n => n.ProjectId == id));
                 db.Projects.Remove(proj);
                 db.SaveChanges();
                 return true;

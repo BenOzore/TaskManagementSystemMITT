@@ -37,30 +37,14 @@ namespace TaskManagementSystemMITT.Models
 
         public static List<Notification> GetNotificationsForUser(ApplicationDbContext db, string userId)
         {
-            if (UserRoleHelper.CheckIfUserInRole(userId, "Manager")) {
-                return db.Notifications.Where(n => n.UserId == userId || n.isForManager).ToList();
-            }
-            else
-            {
-                return db.Notifications.Where(n => n.UserId == userId && !n.isForManager).ToList();
-            }           
+            return db.Notifications.Where(n => n.UserId == userId).ToList();
+
         }
 
         public static void ChangeStatus(ApplicationDbContext db, string userId)
         {
-            if (UserRoleHelper.CheckIfUserInRole(userId, "Manager"))
-            {
-               // db.Notifications.Where(n => n.UserId == userId).ToList().ForEach(n => n.IsOpened = true);
-                db.Notifications.Where(n => n.isForManager).ToList().ForEach(n => n.IsOpened = true);
-                db.SaveChanges();
-            }
-            else
-            {
-                db.Notifications.Where(n => n.UserId == userId && !n.isForManager).ToList().ForEach(n => n.IsOpened = true);
-                db.SaveChanges();
-            }
-           
-            
+            db.Notifications.Where(n => n.UserId == userId).ToList().ForEach(n => n.IsOpened = true);
+            db.SaveChanges();
         }
 
         public static void CreateManagerNotifications(ApplicationDbContext db, string userId)
@@ -167,13 +151,12 @@ namespace TaskManagementSystemMITT.Models
             {
                 db.Notifications.Add(new Notification
                 {
-                    Urgent = false,
+                    Urgent = true,
                     DateTime = DateTime.Now,
                     ProjectTaskId = t.Id,
                     UserId = userId,
                     IsOpened = false,
-                    Body = t.Name + "  " + note,
-                    isForManager = true
+                    Body = "<URGENT> " + t.Name + "  " + note,
                 });
                 db.SaveChanges();
             }

@@ -221,6 +221,10 @@
     <Compile Include="Migrations\202011130617340_notification.Designer.cs">
       <DependentUpon>202011130617340_notification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011131429461_updateNotificationTable.cs" />
+    <Compile Include="Migrations\202011131429461_updateNotificationTable.Designer.cs">
+      <DependentUpon>202011131429461_updateNotificationTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BudgetHelper.cs" />
@@ -384,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011130617340_notification.resx">
       <DependentUpon>202011130617340_notification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011131429461_updateNotificationTable.resx">
+      <DependentUpon>202011131429461_updateNotificationTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

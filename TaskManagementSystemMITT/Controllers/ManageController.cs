@@ -80,15 +80,15 @@ namespace TaskManagementSystemMITT.Controllers
             {
                 model.Projects = ProjectHelper.AllProjectsByUser(db, userId).OrderByDescending(p => p.Priority).ToList();
                 NotificationHelper.CreateManagerNotifications(db, userId);
-                ViewBag.NotificationCount = db.Notifications.Where(t => t.UserId == userId || t.isForManager).Count();
-                ViewBag.UnreadCount = db.Notifications.Where(t => t.UserId == userId && t.IsOpened == false || t.isForManager && t.IsOpened == false).Count();
+                ViewBag.NotificationCount = db.Notifications.Where(t => t.UserId == userId).Count();
+                ViewBag.UnreadCount = db.Notifications.Where(t => t.UserId == userId && t.IsOpened == false).Count();
             }
             if (User.IsInRole("Developer"))
             {
                 model.Tasks = TaskHelper.GetAllTaskByUser(userId).OrderByDescending(t => t.Priority).ToList();
                 NotificationHelper.CreateTasksOneDayLeftForDev(db, userId);
-                ViewBag.NotificationCount = db.Notifications.Where(t => t.UserId == userId && !t.isForManager).Count();
-                ViewBag.UnreadCount = db.Notifications.Where(t => t.UserId == userId && t.IsOpened == false && !t.isForManager).Count();
+                ViewBag.NotificationCount = db.Notifications.Where(t => t.UserId == userId).Count();
+                ViewBag.UnreadCount = db.Notifications.Where(t => t.UserId == userId && t.IsOpened == false).Count();
             }
 
             return View(model);
