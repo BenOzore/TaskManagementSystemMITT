@@ -101,7 +101,7 @@ namespace TaskManagementSystemMITT.Controllers
             if (ModelState.IsValid)
             {
                 TaskHelper.EditTask(projectTask);
-                return Redirect($"~/Manage/GetAllTasksForProject/{projectTask.ProjectId}");
+                return RedirectToAction("Index", "Manage");
             }
             var users = UserRoleHelper.AllUsersInRole("Developer");
             var userId = users.Select(i => new SelectListItem() { Text = i.UserName, Value = i.Id.ToString() }).ToList();
@@ -146,7 +146,7 @@ namespace TaskManagementSystemMITT.Controllers
             if (ModelState.IsValid)
             {
                 TaskHelper.EditTask(projectTask);
-                return RedirectToAction("Index","Manage");
+                return RedirectToAction("Index", "Manage");
             }
 
             return View(projectTask);

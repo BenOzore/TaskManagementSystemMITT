@@ -112,7 +112,7 @@ namespace TaskManagementSystemMITT.Migrations
                     Name = "Seed method",
                     Description = "Writing seed method for task management system",
                     StartDateTime = DateTime.Parse("06/11/2020", new System.Globalization.CultureInfo("pt-BR")),
-                    EndDateTime = DateTime.Parse("18/11/2020", new System.Globalization.CultureInfo("pt-BR")),
+                    EndDateTime = DateTime.Parse("13/11/2020", new System.Globalization.CultureInfo("pt-BR")),
                     IsCompleted = false,
                     Priority = Priority.Low,
                     UserId = user2.Id,
@@ -156,51 +156,6 @@ namespace TaskManagementSystemMITT.Migrations
                  }
             };
             context.Tasks.AddOrUpdate(t => t.Description, tasks);
-
-            Notification[] notifications =
-            {
-                new Notification
-                {
-                    Body = "This project needs to be completed ASAP!!!",
-                    DateTime = DateTime.Now,
-                    Urgent = true,
-                    ProjectId = 1,
-                    ProjectTaskId = 2,
-                    IsOpened = false,
-                    UserId = user1.Id,
-                },
-                new Notification
-                {
-                    Body = "This project has passed the deadline",
-                    DateTime = DateTime.Now,
-                    Urgent = false,
-                    ProjectId = 2,
-                    ProjectTaskId = 2,
-                    IsOpened = false,
-                    UserId = user1.Id,
-                },
-                new Notification
-                {
-                    Body = "This task will be due soon",
-                    DateTime = DateTime.Now,
-                    Urgent = true,
-                    ProjectId = 1,
-                    ProjectTaskId = 2,
-                    IsOpened = false,
-                    UserId = user1.Id,
-                },
-                new Notification
-                {
-                    Body = "This task is completed",
-                    DateTime = DateTime.Now,
-                    Urgent = true,
-                    ProjectTaskId = 3,
-                    ProjectId = 2,
-                    IsOpened = false,
-                    UserId = user1.Id,
-                },
-            };
-            context.Notifications.AddOrUpdate(t => t.Body, notifications);
         }
     }
 }

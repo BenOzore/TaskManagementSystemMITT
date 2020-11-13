@@ -54,6 +54,10 @@ namespace TaskManagementSystemMITT.Models
                 task.PercentCompleted = pTask.PercentCompleted;
                 task.Comment = pTask.Comment;
                 task.Priority = pTask.Priority;
+                if(task.PercentCompleted >= 100)
+                {
+                    task.IsCompleted = true;
+                }
                 db.Entry(task).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return true;
