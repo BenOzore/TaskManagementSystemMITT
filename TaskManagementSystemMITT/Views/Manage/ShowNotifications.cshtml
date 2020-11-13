@@ -5,10 +5,20 @@
 
 <h2>Notifications</h2>
 
-@foreach(var n in Model)
+@foreach (var n in Model)
 {
-    <div>@n.IsOpened</div>
-    <div>@n.Body</div>
+    <table style="width: 35%;border:groove; ">
+        <tr>
+            <th>Created On: @n.DateTime</th>
+        </tr>
+        <tr>
+            <td>@n.Body </td>
+        </tr>
+        <tr>
+            <td>Received By: @n.User.UserName</td>
+         </tr>
+    </table>
+
 }
 
-@Html.ActionLink("Back to dashboard", "ReadAll");
+@Html.ActionLink("Back to dashboard", "ReadAll")

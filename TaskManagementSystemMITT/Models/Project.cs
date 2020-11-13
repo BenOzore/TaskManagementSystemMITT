@@ -40,6 +40,11 @@ namespace TaskManagementSystemMITT.Models
             return ProjectHelper.GetProjectProgress(db, id);
         }
 
+        public string GetDevelopers(int id)
+        {
+            return ProjectHelper.GetAllUsersForProject(db, id);
+        }
+
 
     }
 

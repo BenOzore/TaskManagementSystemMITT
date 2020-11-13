@@ -67,6 +67,21 @@ namespace TaskManagementSystemMITT.Models
             return progress.ToString("0.00");
         }
 
+        public static string GetAllUsersForProject(ApplicationDbContext database, int id)
+        {
+            var project = database.Projects.Find(id);
+            var hashCheck = project.ProjectTasks.Select(t => t.User.UserName).ToHashSet();
+            var result = "";
+            foreach(var user in hashCheck)
+            {
+                
+                result += user + "           ";
+            }
+
+            return result;
+            
+        }
+
 
     }
 }
