@@ -42,7 +42,7 @@
 
 @if (Model.Projects == null)
 {
-    <h3>Developer Dashboard for @ViewBag.User.UserName</h3>
+    <h3>Task Dashboard for @ViewBag.User.UserName</h3>
     @Html.ActionLink("Hide Completed ", "HideCompletedTasksForUser", "Manage", new { Id = ViewBag.User.Id }, null)
     <br />
     @Html.ActionLink("Show All", "Index", "Manage", new { Id = ViewBag.User.Id }, null)
@@ -135,7 +135,8 @@ else
     <div class="floatleft">@Html.ActionLink("Create a New Task", "Create", "Task")</div>
     <div class="floatright">@Html.ActionLink("Show all", "Index")</div>
     <div class="floatright">@Html.ActionLink("Show projects that exceed budget", "ShowProjectsExceedBudget", "Manage", new { Id = ViewBag.User.Id }, null)</div>
-    <div>Notifications: @Html.ActionLink($"{ViewBag.NotificationCount} | {ViewBag.UnreadCount}", "ShowNotifications", "Manage")</div>
+    <div>@Html.ActionLink("Show incomplete tasks past due", "ShowIncompleteAndPastDueTasks", "Manage", new { Id = ViewBag.User.Id }, null)</div>
+    <div>Notifications: @Html.ActionLink($"Total: {ViewBag.NotificationCount} | Unread : {ViewBag.UnreadCount}", "ShowNotifications", "Manage")</div>
     foreach (var project in Model.Projects)
     {
         <table style="width: 61%;border:groove;">

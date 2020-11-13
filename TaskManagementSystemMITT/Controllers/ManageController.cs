@@ -400,6 +400,21 @@ namespace TaskManagementSystemMITT.Controllers
 
             return View("Index", model);
         }
+
+        public async Task<ActionResult> ShowIncompleteAndPastDueTasks(string Id)
+        {
+            ViewBag.User = db.Users.Find(Id);
+            var model = new IndexViewModel
+            {
+                HasPassword = HasPassword(),
+                PhoneNumber = await UserManager.GetPhoneNumberAsync(Id),
+                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(Id),
+                Logins = await UserManager.GetLoginsAsync(Id),
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(Id),
+                Tasks = TaskHelper.GetIncompleteAndPastDueTasks(db),
+            };
+            return View("Index", model);
+        }
         public async Task<ActionResult> ShowAllTasksForProject(int Id)
         {
             var userId = User.Identity.GetUserId();
