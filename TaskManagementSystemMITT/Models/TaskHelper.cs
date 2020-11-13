@@ -94,7 +94,19 @@ namespace TaskManagementSystemMITT.Models
 
             task.IsCompleted = true;
             database.SaveChanges();
+        }
 
+        public static List<ProjectTask> GetIncompleteAndPastDueTasks(ApplicationDbContext database)
+        {
+            var pastDueTasks = new List<ProjectTask>();
+            foreach (var task in database.Tasks)
+            {
+                if(task.EndDateTime.Date < DateTime.Now.Date)
+                {
+                    pastDueTasks.Add(task);
+                }
+            }
+            return pastDueTasks.Where(t => t.IsCompleted == false).ToList();
         }
 
 
