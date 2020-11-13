@@ -147,6 +147,9 @@ else
                 <td style="padding:15px;">@project.Description</td>
             </tr>
             <tr>
+                <td>Developers: @project.GetDevelopers(project.Id)</td>
+            </tr>
+            <tr>
                 <td>Budget: @project.Budget <span style="float:right">Cost: @project.GetCost(project.Id)</span></td>                
             </tr>
             <tr>
